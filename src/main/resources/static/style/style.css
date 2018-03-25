@@ -149,3 +149,36 @@ a{
     color: #555555;
     margin-left: 5px;
 }
+.panel-heading{
+    font-size: 1.3em;
+}
+.panel{
+    border-radius: 0;
+}
+.panel-heading i{
+    font-size: 1em;
+    border: 1px solid #aaa;
+    padding: 6px 4px 4px;
+    color: #00a8ff;
+    margin-right: 10px;
+}
+.panel-body{
+    font-family: "PT Sans Narrow";
+}
+.panel-body .fas{
+    color: #00a8ff;
+    font-size: 1.3em;
+    margin-right: 5px;
+    margin-top:2px;
+}
+.btn{
+    border-radius: 0;
+    color: #fff !important;
+    font-family: "PT Sans Narrow Bold";
+    font-size: 1.1em;
+    padding: 8px 16px;
+    border: 0;
+}
+.btn-primary{
+    background-color: #00a8ff;
+}
