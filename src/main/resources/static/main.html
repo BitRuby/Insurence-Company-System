@@ -5,10 +5,12 @@
     <link rel="stylesheet" href="/webjars/font-awesome/5.0.6/web-fonts-with-css/css/fontawesome.min.css" />
     <link rel="stylesheet" href="/webjars/font-awesome/5.0.6/web-fonts-with-css/css/fontawesome-all.min.css" />
     <link rel="stylesheet" href="/style/style.css" />
+    <link rel="stylesheet" href="/style/style-mobile.css" />
     </head>
 <body>
 <nav class="navbar navbar-default">
     <div class="container">
+        <div class="nav-all-collapse">
         <div class="navbar-header">
             <a class="logo" href="#">YouLoveLife</a>
         </div>
@@ -21,13 +23,31 @@
             </div>
         </form>
         <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><i class="fas fa-search" id="search-icon"></i></a></li>
             <li><a href="#"><i class="far fa-bell"></i></a></li>
             <li><a href="#">Zbigniew Stonoga</a></li>
             <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
         </ul>
+        </div>
+        <div class="nav-search-collapse">
+            <div class="container">
+            <ul class="navbar-header">
+                <li><a href="#"><i class="fas fa-long-arrow-alt-left" id="back-icon"></i></a></li>
+            </ul>
+            <form class="nav navbar-left">
+                <div class="form-group">
+                    <div class="inner-addon left-addon">
+                        <input type="text" class="form-control2" placeholder="Search">
+                        <i class="fa fa-search" ></i>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
     </div>
 </nav>
 </body>
     <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
     <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <script src="/scripts/navbar.js"></script>
 </html>
