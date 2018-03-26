@@ -11,7 +11,7 @@ body{
     color: #373e48;
 }
 a{
-    color: #373e48 !important;
+    color: #535c68 !important;
     text-decoration: none !important;
 }
 .navbar {
@@ -25,13 +25,13 @@ a{
 }
 .navbar-nav>li>a{
     padding: 0;
-    color: #373e48 !important;
+    color: #fff !important;
     font-size: 1.1em;
 }
 .navbar-form .form-control{
     text-align: right;
     border-radius: 0;
-    width: 500px;
+    width: 447px;
     background: #f8f8f8;
 }
 .inner-addon {
@@ -48,12 +48,13 @@ a{
     color: #373e48;
 }
 .navbar-default{
-    background: #fff;
+    background: #535c68;
+    border: 0;
     padding: 18px 0;
 }
 .logo{
     text-indent: -9999px;
-    background: url(../images/logo.png) no-repeat;
+    background: url(../images/logo-dark.png) no-repeat;
     display: block;
     width: 200px;
     height: 35px;
@@ -99,7 +100,7 @@ a{
     padding: 9.5px 12px;
     margin: 0 10px;
     border: 1px solid #ccc;
-    color: #373e48;
+    color: #fff;
 }
 .nav-search-collapse .form-group{
     margin-bottom: 5px;
