@@ -66,10 +66,10 @@ a{
     text-indent: -9999px;
     background: url(../images/logo-dark.png) no-repeat;
     display: block;
-    width: 200px;
+    width: 100px;
     height: 35px;
     margin-top:5px;
-    background-size: 55%;
+    background-size: 100%;
 }
 .nav-search-collapse{
     display: none;
