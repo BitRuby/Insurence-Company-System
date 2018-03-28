@@ -9,7 +9,16 @@ $( document ).ready(
     var navSearch = $(".nav-search-collapse");
 
     var navbarHeader = $(".navbar-header");
-
+    $( window ).resize(
+        function() {
+            if( $(window).width() >= 480 ){
+                mainmenu.css("display", "block");
+            }
+            if( $(window).width() < 480 ){
+                mainmenu.css("display", "none");
+            }
+        }
+    );
     searchicon.click(
         function(){
             navAll.css("display", "none");
