@@ -1,4 +1,4 @@
-package com.youlovelife.Domain;
+package com.youlovelife.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +10,10 @@ public class NormalUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String login, password;
+
+
+    private String login;
+    private String password;
 
     public NormalUser() {
 
