@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Login {
 
     @RequestMapping("/login")
-    public String demo() {
+    public String loadForm() {
         return "login.html";
     }
+
 }
