@@ -1,0 +1,19 @@
+{
+    "records": [
+        {
+            "id":"1",
+            "username":"udemy",
+            "password":"potato9"
+        },
+        {
+            "id":"2",
+            "username":"admin",
+            "password":"safepass"
+        },
+        {
+            "id":"3",
+            "username":"fire",
+            "password":"wall"
+        }
+    ]
+}

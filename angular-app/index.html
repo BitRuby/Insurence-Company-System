@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>YouLoveLife Application</title>
+    <script src="angular.min.js"></script>
+    <script src="angular-route.min.js"></script>
+    <script src="modules/app.js"></script>
+</head>
+<body ng-app="App" ng-controller="DefaultController as def">
+    <div ng-view></div>
+    <li ng-repeat="login in def.logins">
+        {{login.id + ' ' + login.username}}
+    </li>
+</body>
+</html>
