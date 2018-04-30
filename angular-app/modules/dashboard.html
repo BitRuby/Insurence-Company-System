@@ -1,2 +1,109 @@
-<h1>Logged</h1>
-<h2>In</h2>
+
+<div ng-controller="DashboardController as dash">
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="nav-all-collapse">
+        <div class="navbar-header">
+            <a class="logo" href="#">YouLoveLife</a>
+        </div>
+        <form class="nav navbar-form navbar-left">
+            <div class="form-group">
+                <div class="inner-addon left-addon">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <i class="fa fa-search"></i>
+                </div>
+            </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><i class="fas fa-search" id="search-icon"></i></a></li>
+            <li><a href="#"><i class="fas fa-bars" id="menu-icon"></i></a></li>
+            <li><a href="#"><i class="far fa-bell"></i></a></li>
+            <li><a href="#">Zbigniew Stonoga</a></li>
+            <li><a href="" ng-click="dash.submit()">Logout</a></li>
+        </ul>
+        </div>
+        <div class="nav-search-collapse">
+            <div class="container">
+            <ul class="navbar-header">
+                <li><a href="#"><i class="fas fa-long-arrow-alt-left" id="back-icon"></i></a></li>
+            </ul>
+            <form class="nav navbar-left">
+                <div class="form-group">
+                    <div class="inner-addon left-addon">
+                        <input type="text" class="form-control2" placeholder="Search">
+                        <i class="fa fa-search" ></i>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div id="main-menu">
+        <ul>
+            <li>
+                <a href="#"><i class="fas fa-home"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="#"><i class="fas fa-user"></i> My account</a>
+            </li>
+            <li>
+                <a href="#"> <i class="fas fa-heartbeat"></i> Insurence and payers</a>
+            </li>
+            <li>
+                <a href="#"><i class="fas fa-plus"></i> Health insurence data</a>
+            </li>
+            <li>
+                <a href="#"><i class="fas fa-dollar-sign"></i> Calculator</a>
+            </li>
+            <li>
+                <a href="#"><i class="fas fa-cart-plus"></i> Orders</a>
+            </li>
+            <li>
+                <a href="#"><i class="fas fa-sliders-h"></i> Settings</a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="main-content">
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fas fa-heart"></i>Your last actions</div>
+                    <div class="panel-body">
+                        <p><i class="fas fa-caret-right"></i>New pending payment</p>
+                        <p><i>Yestarday, 12:13PM</i></p>
+                        <p><i class="fas fa-caret-right"></i>User settings has been changed</p>
+                        <p><i>Sat, 24 Mar 2018, 5:11PM</i></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>Calculator</h3>
+
+                        <p>Our consultants are working at 8AM - 22PM 7 Days a Week</p>
+                        <i class="fas fa-chart-line"></i>
+
+
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fas fa-heart"></i>Virtual consultant</div>
+                    <div class="panel-body">
+                        <p>Our consultants are working at 8AM - 22PM 7 Days a Week</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Call</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

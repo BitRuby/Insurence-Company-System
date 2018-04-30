@@ -1,12 +1,6 @@
 var app = angular.module('App', ['ngRoute']);
-
 app.controller("DefaultController",
-    function($http){
-        var self = this;
-        $http.get('http://127.0.0.1:5500/angular-app/json/users.json')
-        .then(function(response){
-            self.logins = response.data.records;
-        });
+    function(){
     }
 );
 
@@ -30,10 +24,27 @@ app.controller("LoginController",
     }
 );
 
+app.controller("DashboardController",
+    function($location, $rootScope){
+        var self = this;
+        self.submit = function(){
+            $rootScope.loggedIn = false;
+            $location.path('/login');
+        }
+    }
+);
+
 app.config(['$routeProvider', 
     function($routeProvider){
         $routeProvider
         .when('/login', {
+            resolve: {
+                "check": function($location, $rootScope){
+                    if($rootScope.loggedIn){
+                        $location.path('/dashboard');
+                    }
+                }
+            },
             templateUrl: 'modules/login.html'
         })
         .when('/dashboard', {
