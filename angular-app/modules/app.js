@@ -17,9 +17,17 @@ app.controller("LoginController",
                         records[i].password == self.password ){
                             $rootScope.loggedIn = true;
                             $location.path('/dashboard');
+                        }else{
+                            if (!self.password != "" || !self.username != "") { self.message = "Field can't be empty!";}
+                            else{ self.message = "Invalid credentials provided"; }
                         }
                 }
             });
+        }
+        self.enter = function(){
+            if (event.which == 13){
+                self.submit();
+            }
         }
     }
 );
