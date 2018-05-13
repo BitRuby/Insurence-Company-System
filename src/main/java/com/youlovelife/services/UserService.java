@@ -1,20 +1,26 @@
 package com.youlovelife.services;
 
-import com.youlovelife.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class UserService {
+import com.youlovelife.domain.User;
 
-    @Autowired
-    private UserRepository userRepository;
+import java.util.List;
 
-    public boolean checkLogin() {
-        return false;
-    }
+public interface UserService {
 
+    User findById(long id);
 
+    User findByName(String name);
 
+    void saveUser(User user);
+
+    void updateUser(User user);
+
+    void deleteUserById(long id);
+
+    List<User> findAllUsers();
+
+    void deleteAllUsers();
+
+    public boolean isUserExist(User user);
 
 }
