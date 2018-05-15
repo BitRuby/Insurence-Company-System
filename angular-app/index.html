@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="style/style-mobile.css" />
     <script src="angular.min.js"></script>
     <script src="angular-route.min.js"></script>
+    <script src="angular-jwt.min.js"></script>
     <script src="modules/app.js"></script>
 
     <script src="modules/notifications/app-notifications.js"></script>
@@ -23,6 +24,7 @@
     <script src="scripts/navbar.js"></script>
 </head>
 <body ng-app="App" ng-controller="DefaultController as def">
+        {{decodedToken | json}}
     <div ng-view></div>
 </body>
 </html>

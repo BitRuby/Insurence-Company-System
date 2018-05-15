@@ -1,3 +1,58 @@
+app.factory("AuthInterceptor", function(){
+    return{
+        request: function(config){
+            config.headers = config.headers || {};
+            var encodedString = btoa("bill:abc123");
+            config.headers.Authorization = 'Basic '+encodedString;
+            return config;
+        }
+    };
+});
+
+app.config(['$httpProvider', function($httpProvider){
+    $httpProvider.interceptors.push('AuthInterceptor');
+}]);
+
+app.factory('UserService', function($http, $q){
+
+    var REST_SERVICE_URI = '';
+
+    var factory = {
+        fetchAllUsers: fetchAllUsers
+    };
+    return factory;
+    function fetchAllUsers(){
+        var deferredObject = $q.defer();
+        $http.get(REST_SERVICE_URI).then(
+            function(response){
+                deferredObject.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while fetching users');
+                defferedObject.reject(errResponse);
+            }
+        );
+        return defferedObject.promise;
+    }
+});
+
+app.controller('UserController', function($scope, UserService){
+    var self = this;
+
+    self.submit = function(){
+        UserService.fetchAllUsers().then(
+            function(d){
+                
+            },
+            function(errResponse){
+                console.error('Error while fetching users');
+            }
+        );
+    }
+
+});
+
+
 app.factory("Authorize", function(){
     var user;
     var id;
