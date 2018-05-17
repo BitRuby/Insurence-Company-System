@@ -39,7 +39,7 @@ function Authorize(){
 (function(){
     'use strict';
     angular
-    .module('App', [])
+    .module('App')
     .controller('loginController', loginController);
 
     function loginController($http, $q, $state, $scope, $rootScope, AuthService){
