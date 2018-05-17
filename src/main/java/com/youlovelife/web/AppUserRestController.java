@@ -51,7 +51,7 @@ public class AppUserRestController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     public ResponseEntity<AppUser> userById(@PathVariable Long id) {
-        AppUser appUser = appUserRepository.findOne(id);
+        AppUser appUser = appUserRepository.getOne(id);
         if (appUser == null) {
             return new ResponseEntity<AppUser>(HttpStatus.NO_CONTENT);
         } else {
@@ -68,7 +68,7 @@ public class AppUserRestController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<AppUser> deleteUser(@PathVariable Long id) {
-        AppUser appUser = appUserRepository.findOne(id);
+        AppUser appUser = appUserRepository.getOne(id);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String loggedUsername = auth.getName();
         if (appUser == null) {

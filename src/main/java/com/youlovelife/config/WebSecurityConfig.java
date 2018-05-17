@@ -2,6 +2,8 @@ package com.youlovelife.config;
 
 
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,9 +17,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * @author Sarath Muraleedharan
  *
  */
-@Configurable
-@EnableWebSecurity
 // Modifying or overriding the default spring boot security.
+@Configuration
+@Configurable
+@Order(99)
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     // This method is for overriding some configuration of the WebSecurity
