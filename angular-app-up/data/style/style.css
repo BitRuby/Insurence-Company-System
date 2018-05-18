@@ -24,17 +24,19 @@ a{
 .navbar-form{
     margin: 0;
 }
-.navbar-nav>li{
-    padding: 9px 15px;
-}
+
 .navbar-nav>li>a{
     padding: 0;
     color: #fff !important;
     font-size: 1.1em;
 }
+.navbar-nav>li>a:last-child{
+    padding: 9px 15px;
+}
 .navbar-nav>li:last-child{
     border: 1px solid #f8f8f8;
     border-radius: 3px;
+    padding: 0;
 }
 .navbar-form .form-control{
     text-align: right;
