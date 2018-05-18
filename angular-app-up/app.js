@@ -7,14 +7,48 @@ angular
         var loginState = {
             name: 'login',
             url: '/login',
-            templateUrl: 'components/login/login.tpl.html',
-            controller: 'loginController as log'
+            views: {
+                login: {
+                    templateUrl: 'components/login/login.tpl.html',
+                    controller: 'loginController as log'
+                }
+            }
         }
         var dashboardState = {
             name: 'dashboard',
             url: '/dashboard',
-            templateUrl: 'components/dashboard/dashboard.tpl.html',
-            controller: 'dashboardController as dash'
+            views: {
+                nav: {
+                    templateUrl: 'components/navigation/navigation.tpl.html',
+                    controller: 'navigationController as nav'
+                },
+                menu: {
+                    templateUrl: 'components/menu/menu.tpl.html',
+                    controller: 'menuController as menu'
+                },
+                content: {
+                    templateUrl: 'components/dashboard/dashboard.tpl.html',
+                    controller: 'dashboardController as dash'
+                }
+            },
+        } 
+        var userDetailsState = {
+            name: 'userDetails',
+            url: '/userDetails',
+            views: {
+                nav: {
+                    templateUrl: 'components/navigation/navigation.tpl.html',
+                    controller: 'navigationController as nav'
+                },
+                menu: {
+                    templateUrl: 'components/menu/menu.tpl.html',
+                    controller: 'menuController as menu'
+                },
+                content: {
+                    templateUrl: 'components/user-details/user-details.tpl.html',
+                    controller: 'userDetailsController as user'
+                }
+            },
         } 
         var defaultState = {
             name: 'default',
@@ -25,6 +59,7 @@ angular
 
         $stateProvider.state(loginState);
         $stateProvider.state(dashboardState);
+        $stateProvider.state(userDetailsState);
         $stateProvider.state(defaultState);
     }
 ])

@@ -21,9 +21,15 @@
     <script src="app.js"></script>
     <script src="components/login/login.js"></script>
     <script src="components/dashboard/dashboard.js"></script>
-
+    <script src="components/user-details/user-details.js"></script>
+    <script src="components/navigation/navigation.js"></script>
 </head>
 <body ng-app="App">
-    <ui-view></ui-view>
+    <ui-view name="login"></ui-view>
+    <ui-view name="nav"></ui-view>
+    <div class="container">
+        <ui-view name="menu" class="ui-menu"></ui-view>
+        <ui-view name="content" class="ui-content"></ui-view>
+    </div>
 </body>
 </html>

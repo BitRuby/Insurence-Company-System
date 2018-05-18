@@ -115,13 +115,10 @@ a{
 }
 
 #main-menu{
-    float: left;
-    width: 200px;
+
 }
 #main-content{
-    float:left;
-    margin-left: 15px;
-    width: calc(100% - 215px);
+
 }
 
 #main-menu ul{
@@ -439,4 +436,16 @@ input:focus ~ .highlight {
 
 span.message{
     color: #ff7675;
+}
+
+/*Angular*/
+
+.ui-menu{
+    float: left;
+    width: 200px;
+}
+.ui-content{
+    float:left;
+    margin-left: 15px;
+    width: calc(100% - 215px);
 }
