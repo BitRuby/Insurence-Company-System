@@ -49,7 +49,7 @@ function Authorize(){
                 username: self.username,
                 password: self.password
             }
-            var REST_SERVICE_URI = 'http://localhost:8080/authenticate';
+            var REST_SERVICE_URI = 'http://localhost:8090/authenticate';
             //var deferredObject = $q.defer();
             $http({
                 url: REST_SERVICE_URI,
