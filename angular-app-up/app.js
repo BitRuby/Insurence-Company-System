@@ -52,7 +52,7 @@ angular
                         $state.go('login');
                     }
                 }
-                if (toState.name != 'dashboard'){
+                if (toState.name == 'login'){
                     $state.go('dashboard');
                 }
             }
