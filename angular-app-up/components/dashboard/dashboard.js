@@ -5,7 +5,8 @@
 
     function dashboardController($state, $scope, AuthService){
         var self = this;
-        self.username = AuthService.user.name;
+        if (AuthService.user)
+            self.username = AuthService.user.name;
         /*
         var self = this;
         self.submit = function(){
