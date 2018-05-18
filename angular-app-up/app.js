@@ -29,8 +29,35 @@ angular
     }
 ])
 .run(
-    function(AuthService, $rootScope, $state){
-        $rootScope.$on('$stateChangeStart', function(event, toState){
+    function($transitions, $state) {
+        $transitions.onSuccess({}, function($transitions){
+            var toState = $transitions.$to();
+            var auth = $transitions.injector().get('AuthService');
+            if (!auth.user) {
+                if (toState.name != 'login'){
+                    $state.go('login');
+                }
+            }
+            else{
+                if (toState.data && toState.data.role) {
+                    var hasAccess = false;
+                    for (var i = 0; i < auth.user.roles.length; i++) {
+                        var role = auth.user.roles[i];
+                        if (toState.data.role == role) {
+                            hasAccess = true;
+                            break;
+                        }
+                    }
+                    if (!hasAccess) {
+                        $state.go('login');
+                    }
+                }
+            }
+          });
+    }
+); 
+    /*function(AuthService, $rootScope, $state){
+        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams, options){  
             if (!AuthService.user) {
                 if (toState.name != 'login'){
                     event.preventDefault();
@@ -54,8 +81,8 @@ angular
                 }
             }
         });
-    }
-);
+    }*/
+
         /*
 
         $routeProvider

@@ -3,7 +3,8 @@
     angular.module('App')
     .controller('dashboardController', dashboardController);
 
-    function dashboardController($location, $rootScope, Authorize){
+    function dashboardController($location, $rootScope){
+        /*
         var self = this;
         self.submit = function(){
             Authorize.setUser(null);
@@ -11,6 +12,7 @@
             $rootScope.loggedIn = false;
             $location.path('/login');
         }
+        */
     }
 
 })();

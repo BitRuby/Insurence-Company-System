@@ -49,31 +49,32 @@ function Authorize(){
                 username: self.username,
                 password: self.password
             }
-            var REST_SERVICE_URI = 'http://127.0.0.1:8081/authenticate';
-            var deferredObject = $q.defer();
-            $http.post(REST_SERVICE_URI, params).then(
-                function (response){
-                    self.password = null;
-                    deferredObject.resolve(response.data);
-                    if (response.data.token){
-                        self.message = '';
-                        $http.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
-                        AuthService.user = response.data.user;
-                        $state.go('dashboard');
-                    }
-                    else {
-                        self.message = 'Invalid credentials provided';
-                    }
-                },
-                function (errResponse){
+            var REST_SERVICE_URI = 'http://localhost:8080/authenticate';
+            //var deferredObject = $q.defer();
+            $http({
+                url: REST_SERVICE_URI,
+                method: "POST",
+                params
+            }).then(function (response) {
+                //deferredObject.resolve(response);
+                self.password = null;
+                if (response.data.token) {
+                    self.message = '';
+                    $http.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
+                    AuthService.user = response.data.user;
+                    console.log(AuthService.user);
+                    $state.go('dashboard');
+                } else {
                     self.message = 'Invalid credentials provided';
-                    console.error('Error while login');
-                    defferedObject.reject(errResponse);
                 }
-            );
-            return deferredObject.promise;
-        }
+            }, function (errResponse) {
+                //defferedObject.reject(errResponse);
+                self.message = 'Authetication Failed';
+            });
+            //return deferredObject.promise;
+        };
     }
+
 
 /*
     angular.module('App')
