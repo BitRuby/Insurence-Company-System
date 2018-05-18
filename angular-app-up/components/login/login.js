@@ -73,7 +73,7 @@ function Authorize(){
             });
             //return deferredObject.promise;
         }
-        if (AuthService.flag)
+        if (AuthService.flag==true)
             self.showTouchID = true;
     }
     
