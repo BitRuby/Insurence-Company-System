@@ -5,7 +5,8 @@ angular.module('App')
 
 function AuthService(){
     return {
-        user: null
+        user: null,
+        flag: false
     }
 }
 /*
@@ -41,7 +42,6 @@ function Authorize(){
     angular
     .module('App')
     .controller('loginController', loginController);
-
     function loginController($http, $q, $state, $scope, $rootScope, AuthService){
         var self = this;
         self.submit = function(){
@@ -62,7 +62,7 @@ function Authorize(){
                     self.message = '';
                     $http.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
                     AuthService.user = response.data.user;
-                    console.log(AuthService.user);
+                    $rootScope.$broadcast('LoginSuccessful');
                     $state.go('dashboard');
                 } else {
                     self.message = 'Invalid credentials provided';
@@ -72,8 +72,12 @@ function Authorize(){
                 self.message = 'Authetication Failed';
             });
             //return deferredObject.promise;
-        };
+        }
+        if (AuthService.flag)
+            self.showTouchID = true;
     }
+    
+    
 
 
 /*

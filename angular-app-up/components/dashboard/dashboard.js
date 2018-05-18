@@ -3,7 +3,7 @@
     angular.module('App')
     .controller('dashboardController', dashboardController);
 
-    function dashboardController($location, $rootScope, AuthService){
+    function dashboardController($state, $scope, AuthService){
         var self = this;
         self.username = AuthService.user.name;
         /*
@@ -15,6 +15,11 @@
             $location.path('/login');
         }
         */
+        self.submit = function(){
+            AuthService.user = null;
+            AuthService.flag = true;
+            $state.go('login');
+        }
     }
 
 })();
