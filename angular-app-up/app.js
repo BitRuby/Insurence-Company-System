@@ -52,6 +52,9 @@ angular
                         $state.go('login');
                     }
                 }
+                if (toState.name != 'dashboard'){
+                    $state.go('dashboard');
+                }
             }
           });
     }
