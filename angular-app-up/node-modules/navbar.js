@@ -1,6 +1,12 @@
 $( document ).ready(
     function() {
 
+    function choosePic() {
+            var myPix = new Array("icover.jpg", "icover2.jpg", "icover3.jpg");
+            var randomNum = Math.floor((Math.random() * myPix.length));
+            document.getElementById("bg").style.backgroundImage = "url('data/images/"+myPix[randomNum]+"')";
+    }
+    choosePic();
     var searchicon = $("#search-icon");
     var menuicon = $("#menu-icon");
     var mainmenu = $('#main-menu');
