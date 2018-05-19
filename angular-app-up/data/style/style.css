@@ -191,10 +191,10 @@ a{
     background-color: #00a8ff;
 }
 .bg{
-    background-image: url(../images/icover.jpg);
+    background-image: url(../images/icover2.jpg);
     background-color: #535c68;
     height: calc(100% - 100px);
-    background-position: top center;
+    background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -295,9 +295,10 @@ a{
     overflow:hidden;
     padding: 17.5px 170px;
     color: #fdfdfd;
-    background: #535c68;
+    background: rgb(83, 92, 104);
     position: absolute;
     bottom: 0;
+    border-top: 1px solid #777;
 }
 .bg-footer p{
     font-size: 1em;

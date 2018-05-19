@@ -65,16 +65,21 @@ function Authorize(){
                     $rootScope.$broadcast('LoginSuccessful');
                     $state.go('dashboard');
                 } else {
-                    self.message = 'Invalid credentials provided';
+                    self.message = 'Authetication Failed. Invalid credentials provided';
                 }
             }, function (errResponse) {
                 //defferedObject.reject(errResponse);
-                self.message = 'Authetication Failed';
+                self.message = 'Authetication Failed. Invalid credentials provided';
             });
             //return deferredObject.promise;
         }
         if (AuthService.flag==true)
             self.showTouchID = true;
+        self.enter = function(){
+            if (event.which == 13){
+                self.submit();
+            }
+        }
     }
     
     
