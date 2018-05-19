@@ -1,6 +1,6 @@
-package com.hendisantika.jwt;
+package com.youLoveLife;
 
-import com.hendisantika.jwt.repository.AppUserRepositoryImpl;
+import com.youLoveLife.repository.AppUserRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Scope;

@@ -1,4 +1,4 @@
-package com.hendisantika.jwt.config;
+package com.youLoveLife.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package com.hendisantika.jwt.config;
+package com.youLoveLife.config;
 
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

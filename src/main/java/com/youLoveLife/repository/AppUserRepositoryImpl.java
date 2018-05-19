@@ -1,6 +1,6 @@
-package com.hendisantika.jwt.repository;
+package com.youLoveLife.repository;
 
-import com.hendisantika.jwt.domain.AppUser;
+import com.youLoveLife.domain.AppUser;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

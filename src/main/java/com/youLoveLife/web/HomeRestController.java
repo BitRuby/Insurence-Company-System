@@ -1,7 +1,7 @@
-package com.hendisantika.jwt.web;
+package com.youLoveLife.web;
 
-import com.hendisantika.jwt.domain.AppUser;
-import com.hendisantika.jwt.repository.AppUserRepository;
+import com.youLoveLife.domain.AppUser;
+import com.youLoveLife.repository.AppUserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
-package com.hendisantika.jwt.web;
+package com.youLoveLife.web;
 
-import com.hendisantika.jwt.domain.AppUser;
-import com.hendisantika.jwt.repository.AppUserRepository;
+import com.youLoveLife.domain.AppUser;
+import com.youLoveLife.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
