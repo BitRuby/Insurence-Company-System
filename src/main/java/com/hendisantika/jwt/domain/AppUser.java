@@ -11,11 +11,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Model class for application user
- *
- * @author Hendi Santika
  *
  */
 @Entity
@@ -31,6 +30,17 @@ public class AppUser implements UserDetails {
 	private String password;
 	@ElementCollection
 	private List<String> roles = new ArrayList<>();
+
+	public AppUser() {
+
+	}
+
+	public AppUser(String name, String username, String password, List<String> roles) {
+		this.name = name;
+		this.username = username;
+		this.password = password;
+		this.roles = roles;
+	}
 
 	public Long getId() {
 		return id;
@@ -108,4 +118,30 @@ public class AppUser implements UserDetails {
 		return username;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		AppUser appUser = (AppUser) o;
+		return Objects.equals(name, appUser.name) &&
+				Objects.equals(username, appUser.username) &&
+				Objects.equals(password, appUser.password);
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(name, username, password, roles);
+	}
+
+	@Override
+	public String toString() {
+		return "AppUser{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", roles=" + roles +
+				'}';
+	}
 }

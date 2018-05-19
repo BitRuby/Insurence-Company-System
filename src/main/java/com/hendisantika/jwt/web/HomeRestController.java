@@ -5,6 +5,7 @@ import com.hendisantika.jwt.repository.AppUserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -18,13 +19,12 @@ import java.util.*;
 
 /**
  * All web services in this controller will be available for all the users
- *
- * @author Hendi Santika
  */
 @RestController
 public class HomeRestController {
     @Autowired
-    private AppUserRepository appUserRepository;
+    @Qualifier("appUserRepository")
+     private AppUserRepository appUserRepository;
 
     /**
      * This method is used for user registration. Note: user registration is not
@@ -69,6 +69,7 @@ public class HomeRestController {
                                                      HttpServletResponse response) throws IOException {
         String token = null;
         AppUser appUser = appUserRepository.findOneByUsername(username);
+        System.out.println("\nusername: " + username + "\npassword: " + password + "\n\n");
         Map<String, Object> tokenMap = new HashMap<String, Object>();
         if (appUser != null && appUser.getPassword().equals(password)) {
             token = Jwts.builder().setSubject(username).claim("roles", appUser.getRoles()).setIssuedAt(new Date())

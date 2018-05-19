@@ -23,8 +23,6 @@ import java.util.List;
 /**
  * A generic filter for security. I will check token present in the header.
  * 
- * @author Hendi Santika
- *
  */
 public class JWTFilter extends GenericFilterBean {
 	private static final String AUTHORIZATION_HEADER = "Authorization";

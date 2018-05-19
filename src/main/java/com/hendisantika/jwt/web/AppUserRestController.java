@@ -3,6 +3,7 @@ package com.hendisantika.jwt.web;
 import com.hendisantika.jwt.domain.AppUser;
 import com.hendisantika.jwt.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,13 +16,12 @@ import java.util.List;
 /**
  * Rest controller for authentication and user details. All the web services of
  * this rest controller will be only accessible for ADMIN users only
- *
- * @author Hendi Santika
  */
 @RestController
 @RequestMapping(value = "/api")
 public class AppUserRestController {
     @Autowired
+    @Qualifier("appUserRepository")
     private AppUserRepository appUserRepository;
 
     /**
