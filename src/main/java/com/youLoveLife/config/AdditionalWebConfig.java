@@ -1,4 +1,4 @@
-package com.hendisantika.jwt.config;
+package com.youLoveLife.config;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -7,9 +7,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-/**
- * Created by nydiarra on 06/05/17.
- */
 @Configuration
 public class AdditionalWebConfig {
     /**

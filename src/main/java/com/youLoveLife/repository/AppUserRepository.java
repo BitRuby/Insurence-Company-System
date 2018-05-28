@@ -1,12 +1,10 @@
-package com.hendisantika.jwt.repository;
+package com.youLoveLife.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.hendisantika.jwt.domain.AppUser;
+import com.youLoveLife.domain.AppUser;
+import org.springframework.stereotype.Repository;
 
-/**
- * @author Hendi Santika
- *
- */
+@Repository
 public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 	public AppUser findOneByUsername(String username);
 }
