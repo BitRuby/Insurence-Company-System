@@ -105,6 +105,12 @@
     }
 }
 @media only screen and (max-width: 480px) {
+.ui-content {
+    margin: 0 auto;
+    width: 100%;
+}
+}
+@media only screen and (max-width: 480px) {
 
     .bg .left-panel {
         width: 320px;
@@ -120,7 +126,7 @@
         padding: 20px 0;
     }
     #main-content {
-        width: 95%;
+        width: 98%;
     }
     .navbar-default{
         padding: 18px 18px;
@@ -183,12 +189,25 @@
         display: block;
     }
 }
+@media only screen and (max-width: 481px) {
+.navbar-nav>li{
+    padding: 4px 7px;
+}
+}
+@media only screen and (max-width: 433px) {
+    .navbar-nav>li{
+        padding: 0;
+    }
+    }
 @media only screen and (max-width: 320px) {
 
     .bg .left-panel {
         width: 280px;
         padding: 60px 18px;
         margin: 0 auto;
+    }
+    .navbar-nav>li{
+        padding: 4px 7px;
     }
 }
 
