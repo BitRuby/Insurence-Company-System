@@ -28,7 +28,6 @@ public class AppUserRepositoryImpl {
 
         while (it.hasNext()) {
             AppUser userFromDB = it.next();
-            //System.out.println(userFromDB + "\n" + user + "\n" + userFromDB.equals(user));
             if(userFromDB.equals(user))
                 return true;
         }

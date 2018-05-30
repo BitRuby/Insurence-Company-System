@@ -19,6 +19,6 @@ public class Starter implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         repo.setFirstUsers();
-        repository.sendEveryone("Bicz");
+        repository.sendEveryone("Bicz", "Biczes");
     }
 }

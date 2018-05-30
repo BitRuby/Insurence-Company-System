@@ -12,14 +12,15 @@ public class Message {
     private Long id;
     private Long userID;
     private boolean isReaded;
-    private String message;
+    private String message, topic;
 
     public Message() {
     }
 
-    public Message(Long userID, String message) {
+    public Message(Long userID, String topic, String message) {
         this.userID = userID;
         this.isReaded = false;
+        this.topic = topic;
         this.message = message;
     }
 
@@ -55,6 +56,14 @@ public class Message {
         this.message = message;
     }
 
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
     @Override
     public String toString() {
         return "Message{" +
@@ -62,6 +71,7 @@ public class Message {
                 ", userID=" + userID +
                 ", isReaded=" + isReaded +
                 ", message='" + message + '\'' +
+                ", topic='" + topic + '\'' +
                 '}';
     }
 }

@@ -17,12 +17,12 @@ public class MessageRestController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/messageToAll/", method = RequestMethod.POST)
-    public void sendMessageToEveryone(@RequestBody String message) {
-        messageRepository.sendEveryone(message);
+    public void sendMessageToEveryone(@RequestBody String topic, @RequestBody String message) {
+        messageRepository.sendEveryone(topic, message);
     }
 
     @RequestMapping(value = "/messageToUser/", method = RequestMethod.POST)
-    public void sendMessage(@RequestBody String message, @RequestBody Integer userId){
-        messageRepository.sendMessage(message, userId);
+    public void sendMessage(@RequestBody String topic, @RequestBody String message, @RequestBody Integer userId){
+        messageRepository.sendMessage(topic, message, userId);
     }
 }
