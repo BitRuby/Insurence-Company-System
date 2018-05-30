@@ -1,6 +1,6 @@
 'use strict'; //Use Strict mode ES5
 angular
-.module('App', ['ui.router'])
+.module('App', ['ui.router', 'hl.css.ui.router'])
 .config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider){
 
@@ -11,6 +11,11 @@ angular
                 login: {
                     templateUrl: 'components/login/login.tpl.html',
                     controller: 'loginController as log'
+                }
+            },
+            data: {
+                css: {
+                    login: 'data/style/login-inputs.css'
                 }
             }
         }
