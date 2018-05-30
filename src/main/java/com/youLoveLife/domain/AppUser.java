@@ -22,7 +22,9 @@ public class AppUser implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String name;
+	private String name, surname;
+	@Embedded
+	private Address address;
 
 	@Column(unique = true)
 	private String username;
@@ -35,8 +37,10 @@ public class AppUser implements UserDetails {
 
 	}
 
-	public AppUser(String name, String username, String password, List<String> roles) {
+	public AppUser(String name, String surname, Address address, String username, String password, List<String> roles) {
 		this.name = name;
+		this.surname = surname;
+		this.address = address;
 		this.username = username;
 		this.password = password;
 		this.roles = roles;
@@ -72,6 +76,22 @@ public class AppUser implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address addressID) {
+		this.address = addressID;
 	}
 
 	@JsonIgnore
@@ -124,6 +144,8 @@ public class AppUser implements UserDetails {
 		if (o == null || getClass() != o.getClass()) return false;
 		AppUser appUser = (AppUser) o;
 		return Objects.equals(name, appUser.name) &&
+				Objects.equals(surname, appUser.surname) &&
+				Objects.equals(address, appUser.address) &&
 				Objects.equals(username, appUser.username) &&
 				Objects.equals(password, appUser.password);
 	}
@@ -131,7 +153,7 @@ public class AppUser implements UserDetails {
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(name, username, password, roles);
+		return Objects.hash(name, surname, address, username, password, roles);
 	}
 
 	@Override
@@ -139,6 +161,8 @@ public class AppUser implements UserDetails {
 		return "AppUser{" +
 				"id=" + id +
 				", name='" + name + '\'' +
+				", surname='" + surname + '\'' +
+				", address=" + address +
 				", username='" + username + '\'' +
 				", password='" + password + '\'' +
 				", roles=" + roles +
