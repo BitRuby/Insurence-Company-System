@@ -3,8 +3,6 @@ package com.youLoveLife.repository;
 import com.youLoveLife.domain.Contribution.Job;
 import com.youLoveLife.domain.user.Address;
 import com.youLoveLife.domain.user.AppUser;
-import com.youLoveLife.domain.Contribution.Contribution;
-import com.youLoveLife.enums.ContributionType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
