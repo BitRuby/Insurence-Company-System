@@ -1,4 +1,4 @@
-package com.youLoveLife.domain;
+package com.youLoveLife.domain.user;
 
 import javax.persistence.*;
 import java.util.Objects;

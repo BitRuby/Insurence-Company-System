@@ -1,9 +1,8 @@
 package com.youLoveLife.repository;
 
-import com.youLoveLife.domain.AppUser;
+import com.youLoveLife.domain.user.AppUser;
 import com.youLoveLife.domain.Message;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

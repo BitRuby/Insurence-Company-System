@@ -1,6 +1,6 @@
 package com.youLoveLife.web;
 
-import com.youLoveLife.domain.AppUser;
+import com.youLoveLife.domain.user.AppUser;
 import com.youLoveLife.repository.AppUserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

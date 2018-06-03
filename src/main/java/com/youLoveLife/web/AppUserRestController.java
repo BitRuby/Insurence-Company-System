@@ -1,6 +1,6 @@
 package com.youLoveLife.web;
 
-import com.youLoveLife.domain.AppUser;
+import com.youLoveLife.domain.user.AppUser;
 import com.youLoveLife.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

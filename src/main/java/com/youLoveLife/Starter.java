@@ -21,4 +21,19 @@ public class Starter implements CommandLineRunner {
         repo.setFirstUsers();
         repository.sendEveryone("Bicz", "Biczes");
     }
+
+    /* TODO
+        dropy do bazy
+
+        drop table app_user cascade constraint;
+        drop table app_user_roles cascade constraint;
+        drop table health_contribution cascade constraint;
+        drop table job cascade constraint;
+        drop table labor_fund_contribution cascade constraint;
+        drop table message cascade constraint;
+        drop table pension cascade constraint;
+        drop table rent cascade constraint;
+        drop table social_contribution cascade constraint;
+
+     */
 }
