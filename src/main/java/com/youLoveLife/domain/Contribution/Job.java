@@ -1,5 +1,7 @@
 package com.youLoveLife.domain.Contribution;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.youLoveLife.domain.user.AppUser;
 
 import javax.persistence.*;
@@ -15,6 +17,7 @@ public class Job {
     private Date toDate;
     private Double salary;
     @ManyToOne
+    @JsonIgnoreProperties("jobsList")
     private AppUser appUser;
 
     public Job() {

@@ -1,5 +1,6 @@
 package com.youLoveLife.domain.Contribution;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.youLoveLife.domain.user.AppUser;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class LaborFundContribution {
     private Double amount;
 
     @OneToOne
+    @JsonIgnoreProperties("laborFundContribution")
     private AppUser appUser;
 
 

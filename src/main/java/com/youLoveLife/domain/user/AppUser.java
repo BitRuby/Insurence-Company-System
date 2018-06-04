@@ -1,6 +1,8 @@
 package com.youLoveLife.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.youLoveLife.domain.Contribution.*;
@@ -29,13 +31,17 @@ public class AppUser implements UserDetails {
 	private Address address;
 	private Date dateOfBirth;
 	@OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("appUser")
 	private List<Job> jobsList;
 
     @OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL, mappedBy = "appUser")
+	@JsonIgnoreProperties("appUser")
     private SocialContribution socialContribution;
     @OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL, mappedBy = "appUser")
+	@JsonIgnoreProperties("appUser")
     private HealthContribution healthContribution;
     @OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL, mappedBy = "appUser")
+	@JsonIgnoreProperties("appUser")
     private LaborFundContribution laborFundContribution;
 
 	@Column(unique = true)
@@ -145,6 +151,7 @@ public class AppUser implements UserDetails {
         this.jobsList = jobsList;
     }
 
+    @JsonIgnore
     public Job getLastJob() {
 	    Iterator<Job> it = jobsList.iterator();
 	    Job lastJob = null;

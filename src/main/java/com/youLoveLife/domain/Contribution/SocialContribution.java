@@ -1,5 +1,6 @@
 package com.youLoveLife.domain.Contribution;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.youLoveLife.domain.user.AppUser;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class SocialContribution {
     private Rent rent;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("socialContribution")
     private AppUser appUser;
 
     public SocialContribution() {
