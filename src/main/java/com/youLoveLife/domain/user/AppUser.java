@@ -76,8 +76,30 @@ public class AppUser implements UserDetails {
         else
             this.healthContribution.setInsured(true);
 
+        if(jobsList != null) {
+			Job firstJob = jobsList.get(0);
+			Job lastJob = this.getLastJob();
+			Date startDate = null, toDate = null;
+
+			if (firstJob != null)
+				startDate = firstJob.getFromDate();
+			if (lastJob != null)
+				toDate = lastJob.getToDate();
+
+			this.healthContribution.setFromDate(startDate);
+			this.healthContribution.setToDate(toDate);
+			this.laborFundContribution.setFromDate(startDate);
+			this.laborFundContribution.setToDate(toDate);
+			this.socialContribution.setFromDate(startDate);
+		}
+
         LaborFundCalculator laborFundCalculator = new LaborFundCalculator(this.jobsList, this.laborFundContribution.getFromDate());
+
+        if(laborFundCalculator.checkIfActuallyWork())
+			laborFundContribution.setActive(true);
+
         laborFundContribution.setAmount(laborFundCalculator.calculateBenefit());
+
 
         SocialContributionCalculator socialContributionCalculator = new SocialContributionCalculator(this.jobsList);
         socialContribution.setAmount(socialContributionCalculator.calculateContribution());

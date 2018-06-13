@@ -75,8 +75,7 @@ public class HomeRestController {
             token = Jwts.builder().setSubject(username).claim("roles", appUser.getRoles()).setIssuedAt(new Date())
                     .signWith(SignatureAlgorithm.HS256, "secretkey").compact();
             tokenMap.put("token", token);
-            tokenMap.put("user", appUser);
-            System.out.println("Przejszło");
+            tokenMap.put("user", appUser);;
             return new ResponseEntity<Map<String, Object>>(tokenMap, HttpStatus.OK);
         } else {
             tokenMap.put("token", null);

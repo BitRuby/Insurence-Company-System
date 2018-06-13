@@ -3,6 +3,8 @@ package com.youLoveLife.repository;
 import com.youLoveLife.domain.Contribution.Job;
 import com.youLoveLife.domain.user.Address;
 import com.youLoveLife.domain.user.AppUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +16,11 @@ import java.util.*;
 public class AppUserRepositoryImpl {
 
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
+
+    @Autowired
+    @Lazy
+    private AppUserRepository appUserRepository;
 
 
     public List<AppUser> getUsersList() {
@@ -117,14 +123,39 @@ public class AppUserRepositoryImpl {
 
 
         if(!isExistUser(user1, users)){
-            System.out.println("BICZ 1");
             em.persist(user1);
         }
         if(!isExistUser(user2, users)) {
-            System.out.println("BICZ 2");
             em.persist(user2);
         }
 
+    }
+
+    public AppUser updateUser(Integer userID) {
+        List<AppUser> users = this.getUsersList();
+        Iterator<AppUser> iterator = users.iterator();
+        AppUser tmp = null;
+
+        while (iterator.hasNext()) {
+             tmp = iterator.next();
+
+            if(tmp.getId().equals(userID)) {
+                tmp.updateData();
+                /*
+                    TODO jesli nie bedzie dzialac uzyc:
+
+                    public void updateArtist(Artist artist) {
+                        manager.getTransaction().begin();
+                        manager.merge(artist);
+                        manager.getTransaction().commit();
+                    }
+                 */
+                appUserRepository.save(tmp);
+                break;
+            }
+        }
+
+        return tmp;
     }
 
 }

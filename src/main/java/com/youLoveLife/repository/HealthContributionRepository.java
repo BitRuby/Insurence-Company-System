@@ -1,9 +1,10 @@
 package com.youLoveLife.repository;
 
-import com.youLoveLife.domain.Message;
+import com.youLoveLife.domain.Contribution.HealthContribution;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MessageRepository extends JpaRepository<Message, Long> {
+public interface HealthContributionRepository extends JpaRepository<HealthContribution, Long> {
+
 }
