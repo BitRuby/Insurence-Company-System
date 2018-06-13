@@ -4,7 +4,7 @@
     .module('App')
     .controller('userDetailsController', userDetailsController);
 
-    function userDetailsController(AuthService, $scope){
+    function userDetailsController(AuthService, RestServices, $scope){
         var self = this;
         $scope.tab = 1;
         $scope.setTab = function(newTab){
@@ -22,6 +22,14 @@
             self.city = AuthService.user.address.city;
             self.country = AuthService.user.address.country;
             self.building = AuthService.user.address.building;
+            self.roles = AuthService.user.roles;
+        }
+        self.healthContributionView = true;
+        self.healthContributionFromDate = RestServices.healthContribution();
+        if (RestServices.healthContribution.isInsured){
+            self.healthContributionView = true;
+            self.healthContributionFromDate = RestServices.healthContribution.fromDate;
+            self.healthContributionToDate = RestServices.healthContribution.toDate;
         }
     }
 })();

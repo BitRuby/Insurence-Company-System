@@ -3,7 +3,6 @@ angular
 .module('App', ['ui.router', 'hl.css.ui.router'])
 .config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider){
-
         var loginState = {
             name: 'login',
             url: '/login',

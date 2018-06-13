@@ -26,9 +26,16 @@
                                     <div class="panel-body">
                                          <h3>Your profile</h3>
                                          <hr class="hr-cart">
-                                         <a href="/#!/"></a>
+                                         <div><a href="" class="text-primary" data-toggle="modal" data-target="#summary">Summary</a></div>
                                     </div>
                                 </div>
+                                <div class="panel panel-default">
+                                        <div class="panel-body">
+                                             <h3>Notifications</h3>
+                                             <hr class="hr-cart">
+                                             <a href="/#!/"></a>
+                                        </div>
+                                    </div>
                         </div>
                         <div class="col-xs-12 col-md-6">
                                 <div class="panel panel-default">
@@ -74,7 +81,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
                 </div>
               </div>
@@ -108,7 +114,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
                 </div>
               </div>
@@ -141,7 +146,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
                 </div>
               </div>
@@ -172,7 +176,39 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+           <!--Summary -->
+      <div class="modal fade" id="summary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Summary</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div ng-show="user.healthContributionView">
+                            <h4>Health contribution details</h4>
+                            <hr>
+                                <div class="col-md-6">
+                                    <strong>Status</strong>
+                                    <p>Active</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <strong>Since</strong>
+                                    <p>{{user.healthContributionFromDate | date:"MM/dd/yyyy"}}</p>
+                                    <strong>Expiration date</strong>
+                                    <p>{{user.healthContributionToDate | date:"MM/dd/yyyy"}}</p>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
                   <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
                 </div>
               </div>
