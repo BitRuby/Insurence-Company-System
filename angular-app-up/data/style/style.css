@@ -18,7 +18,7 @@ body,html{
     height: 100%;
 }
 a{
-    color: #535c68 !important;
+    color: #535c68;
     text-decoration: none !important;
 }
 .navbar {

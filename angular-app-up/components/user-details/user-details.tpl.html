@@ -35,7 +35,16 @@
                                     <div class="panel-body">
                                           <h3>Your personal data</h3>
                                           <hr class="hr-cart">
-                                          <a href="" data-toggle="modal" data-target="#personalData">Personal data</a>
+                                          <div class="row">
+                                              <div class="col-md-6">
+                                                    <div><a href="" class="text-primary" data-toggle="modal" data-target="#personalData">Personal data</a></div>
+                                                    <div><a href="" class="text-primary" data-toggle="modal" data-target="#contactDetails">Contact details</a></div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                    <div><a href="" class="text-primary" data-toggle="modal" data-target="#address">Address</a></div>
+                                                    <div><a href="" class="text-primary" data-toggle="modal" data-target="#addressRegistered">Registered address</a></div>
+                                              </div>
+                                          </div>               
                                     </div>
                                 </div>
                         </div>
@@ -53,9 +62,9 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <strong>First name</strong>
+                            <strong>Name</strong>
                             <p>{{user.firstName}}</p>
-                            <strong>Second name</strong>
+                            <strong>Surname</strong>
                             <p>{{user.secondName}}</p>
                         </div>
                         <div class="col-md-6">
@@ -63,7 +72,104 @@
                             <p>{{user.dateOfBirth | date:"MM/dd/yyyy"}}</p>
                         </div>
                     </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
+                <!-- Address -->
+      <div class="modal fade" id="address" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Address</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong>Street</strong>
+                            <p>{{user.street}}</p>
+                            <strong>Building</strong>
+                            <p>{{user.building}}</p>
+                            <strong>Country</strong>
+                            <p>{{user.country}}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>City</strong>
+                            <p>{{user.city}}</p>
+                            <strong>Zip/Postal code</strong>
+                            <p>{{user.postcode}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+             <!-- Registered Address -->
+      <div class="modal fade" id="addressRegistered" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Registered address</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong>Street</strong>
+                            <p>{{user.street}}</p>
+                            <strong>Building</strong>
+                            <p>{{user.building}}</p>
+                            <strong>Country</strong>
+                            <p>{{user.country}}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>City</strong>
+                            <p>{{user.city}}</p>
+                            <strong>Zip/Postal code</strong>
+                            <p>{{user.postcode}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+            <!--Contact details -->
+      <div class="modal fade" id="contactDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Personal data</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong>Phone</strong>
+                            <p>{{user.phone}}</p>
+                            <strong>E-mail address</strong>
+                            <p>{{user.email}}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Social</strong>
+                            <p>{{user.skype}}</p>
+                            <p>{{user.facebook}}</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

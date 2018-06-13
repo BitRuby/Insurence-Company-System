@@ -17,6 +17,11 @@
             self.firstName = AuthService.user.name;
             self.secondName = AuthService.user.surname;
             self.dateOfBirth = AuthService.user.dateOfBirth;
+            self.street = AuthService.user.address.street;
+            self.postcode = AuthService.user.address.postcode;
+            self.city = AuthService.user.address.city;
+            self.country = AuthService.user.address.country;
+            self.building = AuthService.user.address.building;
         }
     }
 })();
