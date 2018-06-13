@@ -1,10 +1,74 @@
-
             <div id="main-content">
                 <div class="row">
-                        <div class="col-xs-12 col-md-12">
-                            <h2>{{user.fullName}} details</h2>
-                            <img src="..." alt="..." class="img-rounded">
+                       <!--
+                                <ul class="nav nav-tabs">
+                                        <li role="presentation" ng-class="{ active: isSet(1) }"><a href ng-click="setTab(1)">Personal information</a></li>
+                                        <li role="presentation" ng-class="{ active: isSet(2) }"><a href ng-click="setTab(2)">Orders</a></li>
+                                        <li role="presentation" ng-class="{ active: isSet(3) }"><a href ng-click="setTab(3)">Notifications</a></li>
+                                        <li role="presentation" ng-class="{ active: isSet(4) }"><a href ng-click="setTab(4)">User settings</a></li>
+                                </ul>
+                                <div ng-show="isSet(1)">
+                                        <h2>Account summary</h2>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h3>{{user.fullName}}</h3>
+                                                <div class="btn btn-primary">Update settings</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div ng-show="isSet(2)">
+                                </div>  
+                        </div>-->
+                        <div class="col-xs-12 col-md-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                         <h3>Your profile</h3>
+                                         <hr class="hr-cart">
+                                         <a href="/#!/"></a>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                          <h3>Your personal data</h3>
+                                          <hr class="hr-cart">
+                                          <a href="" data-toggle="modal" data-target="#personalData">Personal data</a>
+                                    </div>
+                                </div>
                         </div>
                 </div>
             </div>
        
+      <!-- Personal data -->
+      <div class="modal fade" id="personalData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Personal data</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong>First name</strong>
+                            <p>{{user.firstName}}</p>
+                            <strong>Second name</strong>
+                            <p>{{user.secondName}}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Date of birth</strong>
+                            <p>{{user.dateOfBirth | date:"MM/dd/yyyy"}}</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>

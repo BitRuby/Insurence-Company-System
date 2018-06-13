@@ -11,6 +11,9 @@ body{
     color: #373e48;
     font-size: 1.5em;
 }
+p{
+    font-family: "PT Sans Narrow", sans-serif;
+}
 body,html{
     height: 100%;
 }
@@ -357,4 +360,7 @@ span.message{
     float:left;
     margin-left: 15px;
     width: calc(100% - 215px);
+}
+.hr-cart{
+    margin: 20px -15px;
 }
