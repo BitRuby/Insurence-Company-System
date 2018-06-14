@@ -3,6 +3,8 @@ package com.youLoveLife.web;
 import com.youLoveLife.domain.Contribution.SocialContribution;
 import com.youLoveLife.repository.SocialContributionRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +17,13 @@ public class SocialContributionRestController {
     private SocialContributionRepositoryImpl socialContributionRepository;
 
     @RequestMapping(value = "/getSocialContribution/{userID}", method = RequestMethod.GET)
-    public SocialContribution getSocialContribution(@PathVariable Integer userID) {
-        return socialContributionRepository.getSocialContribution(userID);
+    public ResponseEntity getSocialContribution(@PathVariable Integer userID) {
+        SocialContribution socialContribution = socialContributionRepository.getSocialContribution(userID);
+
+        if (socialContribution != null)
+            return new ResponseEntity(socialContribution, HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
 }
