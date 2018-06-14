@@ -210,6 +210,46 @@
                                 </div>
                         </div>
                     </div>
+                    <hr>
+                    <div ng-show="user.laborFundView">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Labor fund details</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-md-6">
+                                        <strong>Status</strong>
+                                        <p>Active</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <strong>Since</strong>
+                                        <p>{{user.laborFundFromDate | date:"MM/dd/yyyy"}}</p>
+                                        <strong>Expiration date</strong>
+                                        <p>{{user.laborFundToDate | date:"MM/dd/yyyy"}}</p>
+                                    </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4>Social Contribution details</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-md-6">
+                                            <strong>Status</strong>
+                                            <p>Active</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <strong>Rent since</strong>
+                                            <p>{{user.socialContributionRentFromDate | date:"MM/dd/yyyy"}}</p>
+                                            <strong>Pension since</strong>
+                                            <p>{{user.socialContributionPensionFromDate | date:"MM/dd/yyyy"}}</p>
+                                        </div>
+                                </div>
+                            </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>

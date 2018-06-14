@@ -5,10 +5,22 @@ angular
 
 function RestServices(AuthService, $http, $q){
     var data = {};
+    var REST_SERVICE_URI = '';
     return{
         healthContribution: function(){
+            REST_SERVICE_URI = 'http://localhost:8090/getHealthContribution/'+AuthService.user.id;
+            return this.resolve();
+        }, 
+        laborFund: function(){
+            REST_SERVICE_URI = 'http://localhost:8090/getLaborFundContribution/'+AuthService.user.id;
+            return this.resolve();
+        },
+        socialContribution: function(){
+            REST_SERVICE_URI = 'http://localhost:8090/getSocialContribution/'+AuthService.user.id;
+            return this.resolve();
+        },
+        resolve: function(){
             var deffered = $q.defer();
-            var REST_SERVICE_URI = 'http://localhost:8090/getHealthContribution/'+AuthService.user.id;
             $http({
                 url: REST_SERVICE_URI,
                 method: "GET",
