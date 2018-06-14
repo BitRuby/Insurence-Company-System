@@ -25,10 +25,19 @@
             self.roles = AuthService.user.roles;
         }
         RestServices.healthContribution().then(function() {
-            console.log(RestServices.data());
             self.healthContributionView = RestServices.data().insured;
             self.healthContributionFromDate = RestServices.data().fromDate;
             self.healthContributionToDate = RestServices.data().toDate;
+        });
+        RestServices.laborFund().then(function() {
+            self.laborFundView = RestServices.data().active;
+            self.laborFundFromDate = RestServices.data().fromDate;
+            self.laborFundToDate = RestServices.data().toDate;
+        });
+        RestServices.socialContribution().then(function() {
+            console.log(RestServices.data())
+            self.socialContributionPensionFromDate = RestServices.data().pension.fromDate;
+            self.socialContributionRentFromDate = RestServices.data().rent.fromDate;
         });
     }
 })();
