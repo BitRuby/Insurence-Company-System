@@ -22,19 +22,13 @@ public class HealthContributionRestController {
     private HealthContributionRepositoryImpl healthContributionRepository;
 
     @RequestMapping(value = "/getHealthContribution/{userID}", method = RequestMethod.GET)
-    public ResponseEntity<Map<String, Object>> getHealthContribution(@PathVariable Integer userID) {
-        HealthContribution h = healthContributionRepository.getHealthContribution(userID);
-        System.out.println("ID:" + h.getId() + "\namount" + h.getAmount() + "\ntoDate: " + h.getToDate() + "\nfromDate: " + h.getFromDate()
-                + "\nName: " + h.getAppUser().getName() + "\nSurname: " + h.getAppUser().getSurname());
+    public ResponseEntity getHealthContribution(@PathVariable Integer userID) {
+        HealthContribution healthContribution = healthContributionRepository.getHealthContribution(userID);
 
-
-
-
-        String token = null;
-        Map<String, Object> tokenMap = new HashMap<String, Object>();
-        tokenMap.put("token", token);
-        tokenMap.put("healthContribution", h);;
-        return new ResponseEntity<Map<String, Object>>(tokenMap, HttpStatus.OK);
+        if(healthContribution != null)
+            return new ResponseEntity(healthContribution, HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
 
     }
 
