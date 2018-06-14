@@ -3,25 +3,28 @@ angular
 .module("App")
 .factory("RestServices", RestServices);
 
-function RestServices(AuthService, $http){
+function RestServices(AuthService, $http, $q){
+    var data = {};
     return{
         healthContribution: function(){
+            var deffered = $q.defer();
             var REST_SERVICE_URI = 'http://localhost:8090/getHealthContribution/'+AuthService.user.id;
             $http({
                 url: REST_SERVICE_URI,
                 method: "GET",
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
             }).then(function (response) {
-                if (response.data) {
-                    return response.data;
-                } else {
-                    return null;
+                deffered.resolve(response);  
+                if (response.data){
+                    data = response.data.healthContribution;
                 }
             }, function (errResponse) {
-                console.log(errResponse);
-                //$state.go('404');
+                deffered.reject(errResponse);
             });
-            //return null;
+            return deffered.promise;
+        },
+        data: function(){
+            return data;
         }
     }
 }

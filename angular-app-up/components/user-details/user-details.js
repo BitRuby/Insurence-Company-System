@@ -24,12 +24,11 @@
             self.building = AuthService.user.address.building;
             self.roles = AuthService.user.roles;
         }
-        self.healthContributionView = true;
-        self.healthContributionFromDate = RestServices.healthContribution();
-        if (RestServices.healthContribution.isInsured){
-            self.healthContributionView = true;
-            self.healthContributionFromDate = RestServices.healthContribution.fromDate;
-            self.healthContributionToDate = RestServices.healthContribution.toDate;
-        }
+        RestServices.healthContribution().then(function() {
+            console.log(RestServices.data());
+            self.healthContributionView = RestServices.data().insured;
+            self.healthContributionFromDate = RestServices.data().fromDate;
+            self.healthContributionToDate = RestServices.data().toDate;
+        });
     }
 })();
