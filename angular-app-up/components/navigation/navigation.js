@@ -4,19 +4,14 @@
     .module('App')
     .controller('navigationController', navigationController);
 
-    function navigationController($state, $scope, AuthService){
+    function navigationController($state, $scope, AuthService, RestServices){
         var self = this;
-        if (AuthService.user)
+        if (AuthService.user){
             self.username = AuthService.user.name + ' ' + AuthService.user.surname;
-        /*
-        var self = this;
-        self.submit = function(){
-            Authorize.setUser(null);
-            Authorize.setLoggedOutInfo(true);
-            $rootScope.loggedIn = false;
-            $location.path('/login');
         }
-        */
+        RestServices.receiveMessages().then(function() {
+            self.messages = RestServices.data();
+        });
         self.submit = function(){
             AuthService.user = null;
             AuthService.flag = true;

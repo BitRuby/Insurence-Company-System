@@ -386,3 +386,18 @@ span.message{
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
     background: transparent;
 }
+.dropdown-menu{
+    min-width: 350px;
+    margin-top:10px;
+}
+.notify-list{
+    max-height: 250px;
+    overflow: auto;
+}
+.notify-list-elem a{
+    padding: 7px;
+    display: -webkit-box;
+}
+.notify-list-elem:hover{
+    background: #f4f4f4;
+}
