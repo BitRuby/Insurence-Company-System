@@ -47,6 +47,43 @@ public class JWTFilter extends GenericFilterBean {
 			}
 
 		}
+
+
+		//HttpServletResponse response = (HttpServletResponse) res;
+		/*
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+		response.setHeader("Access-Control-Max-Age", "3600");
+		response.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN");
+
+		if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+			response.setStatus(HttpServletResponse.SC_OK);
+		} else {
+			filterChain.doFilter(req, res);
+		}*/
+/*
+		if(res instanceof HttpServletResponse){
+			HttpServletResponse alteredResponse = ((HttpServletResponse)res);
+			addCorsHeader(alteredResponse);
+		}
+		*/
+		/*
+		if("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+			response.sesetStatus(HttpServletResponse.SC_OK);
+		} else {
+			filterChain.doFilter(req, res);
+		}*/
+
+		//filterChain.doFilter(request, res);
+	}
+
+
+	private void addCorsHeader(HttpServletResponse response){
+		//TODO: externalize the Allow-Origin
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		response.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
+		response.addHeader("Access-Control-Allow-Headers", "Authorization, X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
+		response.addHeader("Access-Control-Max-Age", "1728000");
 	}
 
 	/**

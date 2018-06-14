@@ -1,6 +1,7 @@
 package com.youLoveLife.config;
 
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,7 +27,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		web.ignoring()
 				// ignoring the "/", "/index.html", "/app/**", "/register",
 				// "/favicon.ico"
-				.antMatchers("/", "/index.html", "/app/**", "/register", "/authenticate", "/favicon.ico");
+				.antMatchers("/", "/index.html", "/app/**", "/register", "/authenticate", "/favicon.ico", "/getHealthContribution");
+		web.ignoring().antMatchers( HttpMethod.OPTIONS, "/**" );
 	}
 
 	// This method is used for override HttpSecurity of the web Application.
