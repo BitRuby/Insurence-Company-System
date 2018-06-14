@@ -16,7 +16,7 @@ function RestServices(AuthService, $http, $q){
             }).then(function (response) {
                 deffered.resolve(response);  
                 if (response.data){
-                    data = response.data.healthContribution;
+                    data = response.data;
                 }
             }, function (errResponse) {
                 deffered.reject(errResponse);
