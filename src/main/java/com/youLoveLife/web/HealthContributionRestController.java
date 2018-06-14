@@ -15,7 +15,7 @@ public class HealthContributionRestController {
     @Autowired
     private HealthContributionRepositoryImpl healthContributionRepository;
 
-    @RequestMapping(value = "/getHealthContribution/{userID}", method = RequestMethod.POST)
+    @RequestMapping(value = "/getHealthContribution/{userID}", method = RequestMethod.GET)
     public HealthContribution getHealthContribution(@PathVariable Integer userID) {
         HealthContribution h = healthContributionRepository.getHealthContribution(userID);
         System.out.println("ID:" + h.getId() + "\namount" + h.getAmount() + "\ntoDate: " + h.getToDate() + "\nfromDate: " + h.getFromDate()
