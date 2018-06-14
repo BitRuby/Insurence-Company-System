@@ -47,13 +47,19 @@ public class MessageRepositoryImpl {
     }
 
     public List<Message> receiveMessages(Integer userID) {
-        String query = "SELECT * from Message where userID=" + userID;
-        return em.createQuery(query, Message.class).getResultList();
+        //String query = "SELECT * from Message where userID=" + userID;
+        //return em.createQuery(query, Message.class).getResultList();
+        return em.createQuery("SELECT m FROM Message m WHERE m.userID LIKE :userID", Message.class)
+                .setParameter("userID", Long.valueOf(userID))
+                .getResultList();
     }
 
     public void readMessage(Integer messageID) {
-        String query = "SELECT * from Message where id=" + messageID;
-        Message message = em.createQuery(query, Message.class).getSingleResult();
+        //String query = "SELECT * from Message where id=" + messageID;
+        //Message message = em.createQuery(query, Message.class).getSingleResult();
+        Message message = em.createQuery("SELECT m FROM Message m WHERE m.id LIKE :id", Message.class)
+                .setParameter("id", Long.valueOf(messageID))
+                .getSingleResult();
         message.setReaded(true);
         em.merge(message);
     }

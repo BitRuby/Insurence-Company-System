@@ -17,7 +17,10 @@ public class SocialContributionRepositoryImpl {
 
     public SocialContribution getSocialContribution(Integer userID) {
         appUserRepositoryImpl.updateUser(userID);
-        String query = "SELECT * from SocialContribution where appUserId=" + userID;
-        return entityManager.createQuery(query, SocialContribution.class).getSingleResult();
+        //String query = "SELECT * from SocialContribution where appUserId=" + userID;
+        //return entityManager.createQuery(query, SocialContribution.class).getSingleResult();
+        return entityManager.createQuery("SELECT s FROM SocialContribution s WHERE s.appUser.id LIKE :userID", SocialContribution.class)
+                .setParameter("userID", Long.valueOf(userID))
+                .getSingleResult();
     }
 }
