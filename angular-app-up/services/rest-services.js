@@ -9,7 +9,7 @@ function RestServices(AuthService, $http){
             var REST_SERVICE_URI = 'http://localhost:8090/getHealthContribution/'+AuthService.user.id;
             $http({
                 url: REST_SERVICE_URI,
-                method: "GET"
+                method: "POST"
             }).then(function (response) {
                 if (response.data) {
                     return response.data;
