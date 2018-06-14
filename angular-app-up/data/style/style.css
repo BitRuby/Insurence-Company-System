@@ -369,3 +369,20 @@ span.message{
 .hr-cart{
     margin: 20px -15px;
 }
+.dropdown-menu{
+    padding: 0;
+}
+.dropdown-header{
+    color: #222;
+    padding: 10px 15px;
+    background: #f0f0f0 !important;
+}
+.dropdown-toggle{
+    margin-top: 9px;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+    background: transparent;
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+    background: transparent;
+}

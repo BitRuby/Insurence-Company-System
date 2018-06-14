@@ -21,6 +21,9 @@
     .navbar-nav>li:first-child{
         display: block;
     }
+    .navbar-nav>li:nth-child(3){
+        display:none;
+    }
 }
 
 @media only screen and (min-width: 768px) {

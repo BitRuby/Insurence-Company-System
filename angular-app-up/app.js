@@ -68,6 +68,7 @@ angular
     }
 ])
 .run(
+    
     function($transitions, $state) {
         $transitions.onSuccess({}, function($transitions){
             var toState = $transitions.$to();

@@ -9,7 +9,8 @@ function RestServices(AuthService, $http){
             var REST_SERVICE_URI = 'http://localhost:8090/getHealthContribution/'+AuthService.user.id;
             $http({
                 url: REST_SERVICE_URI,
-                method: "GET"
+                method: "GET",
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
             }).then(function (response) {
                 if (response.data) {
                     return response.data;
@@ -17,6 +18,7 @@ function RestServices(AuthService, $http){
                     return null;
                 }
             }, function (errResponse) {
+                console.log(errResponse);
                 //$state.go('404');
             });
             //return null;
