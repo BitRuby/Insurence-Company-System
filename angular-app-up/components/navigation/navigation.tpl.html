@@ -16,7 +16,23 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><i class="fas fa-search" id="search-icon"></i></a></li>
                     <li><a href="#"><i class="fas fa-bars" id="menu-icon"></i></a></li>
-                    <li><a href="#"><i class="far fa-bell"></i></a></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-bell"></i></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header" style="background: #f0f0f0;">
+                                <h4>Notification centre</h4>
+                                </li>
+                            <li><a href="#">
+                                <h4>New calculation of rents coming 2018</h4>
+                                <h6>Jun 15, 2018</h6>
+                            </a>
+                            </li>
+                            <li><a href="#">
+                                <h4>Your password has been changed</h4>
+                                <h6>Jun 17, 2018</h6>
+                            </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li><a href="/#!/userDetails">{{nav.username}}</a></li>
                     <li><a href="" ng-click="nav.submit()">Logout</a></li>
                 </ul>
