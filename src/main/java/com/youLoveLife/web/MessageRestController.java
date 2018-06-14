@@ -5,6 +5,8 @@ import com.youLoveLife.domain.user.AppUser;
 import com.youLoveLife.repository.MessageRepository;
 import com.youLoveLife.repository.MessageRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -38,8 +40,13 @@ public class MessageRestController {
     }
 
     @RequestMapping(value = "/receiveMessages/{userID}", method = RequestMethod.GET)
-    public List<Message> receiveMessages(@PathVariable Integer userID) {
-        return messageRepositoryImpl.receiveMessages(userID);
+    public ResponseEntity receiveMessages(@PathVariable Integer userID) {
+        List<Message> list = messageRepositoryImpl.receiveMessages(userID);
+
+        if(list != null)
+            return new ResponseEntity(list, HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @RequestMapping(value = "/setAsReaded/{messageID}", method = RequestMethod.GET)
