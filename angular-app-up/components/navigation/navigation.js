@@ -11,6 +11,7 @@
         }
         RestServices.receiveMessages().then(function() {
             self.messages = RestServices.data();
+            self.unread = RestServices.data().length;
         });
         self.submit = function(){
             AuthService.user = null;

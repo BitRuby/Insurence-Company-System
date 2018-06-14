@@ -35,7 +35,6 @@
             self.laborFundToDate = RestServices.data().toDate;
         });
         RestServices.socialContribution().then(function() {
-            console.log(RestServices.data())
             self.socialContributionPensionFromDate = RestServices.data().pension.fromDate;
             self.socialContributionRentFromDate = RestServices.data().rent.fromDate;
         });

@@ -394,6 +394,9 @@ span.message{
     max-height: 250px;
     overflow: auto;
 }
+.notify-list-elem{
+    border-bottom: 1px solid #f4f4f4;
+}
 .notify-list-elem a{
     padding: 7px;
     display: -webkit-box;

@@ -23,11 +23,12 @@
                             </li>
                             <ul class="notify-list">
                             <li class="notify-list-elem" ng-repeat="row in nav.messages">
-                                <a href="#"><h4>{{row.topic}}</h4></a>
+                                <a href="#"><h4 ng-style="!row.readed ? { 'font-weight': 'bold' } : {}">{{row.topic}}</h4></a>
                             </li>
                             </ul>
                         </ul>
                     </li>
+                    <li><span class="badge">{{nav.unread}}</span></li>
                     <li><a href="/#!/userDetails">{{nav.username}}</a></li>
                     <li><a href="" ng-click="nav.submit()">Logout</a></li>
                 </ul>
