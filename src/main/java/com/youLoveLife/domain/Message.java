@@ -1,9 +1,6 @@
 package com.youLoveLife.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Message {
@@ -12,7 +9,9 @@ public class Message {
     private Long id;
     private Long userID;
     private boolean isReaded;
-    private String message, topic;
+    @Column(length = 1024)
+    private String message;
+    private String topic;
 
     public Message() {
     }

@@ -18,8 +18,6 @@ public class LaborFundContributionRepositoryImpl {
 
     public LaborFundContribution getLaborFundContribution(Integer userID) {
         appUserRepositoryImpl.updateUser(userID);
-        //String query = "SELECT * from LaborFundContribution where appUserId=" + userID;
-        //return entityManager.createQuery(query, LaborFundContribution.class).getSingleResult();
         return entityManager.createQuery("SELECT l FROM LaborFundContribution l WHERE l.appUser.id LIKE :userID", LaborFundContribution.class)
                 .setParameter("userID", Long.valueOf(userID))
                 .getSingleResult();

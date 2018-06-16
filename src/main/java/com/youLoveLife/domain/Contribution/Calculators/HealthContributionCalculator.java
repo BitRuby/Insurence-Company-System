@@ -20,9 +20,12 @@ public class HealthContributionCalculator {
     }
 
     public boolean isInsured() {
-        if(currentJob.getToDate().after(new Date()))
-            return true;
-        else
-            return false;
+        if(currentJob != null) {
+            if (currentJob.getToDate().after(new Date()))
+                return true;
+            else
+                return false;
+        }
+        return false;
     }
 }

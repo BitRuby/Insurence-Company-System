@@ -19,12 +19,9 @@ public class HealthContributionRepositoryImpl {
     public HealthContribution getHealthContribution(Integer userID) {
         appUserRepositoryImpl.updateUser(userID);
 
-        //String query = "from HealthContribution where appUserId=" + userID;
-        //System.out.println("--------------------------------------------------------" + query);
         return entityManager.createQuery("SELECT h FROM HealthContribution h WHERE h.appUser.id LIKE :userID", HealthContribution.class)
                 .setParameter("userID", Long.valueOf(userID))
                 .getSingleResult();
-                //entityManager.createQuery(query, HealthContribution.class).getSingleResult();
     }
 
 }

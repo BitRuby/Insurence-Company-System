@@ -5,6 +5,7 @@ import com.youLoveLife.domain.Contribution.SocialContribution;
 import com.youLoveLife.domain.user.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,10 +20,9 @@ public class SocialContributionRepositoryImpl {
     @Autowired
     private AppUserRepositoryImpl appUserRepositoryImpl;
 
+    @Transactional
     public SocialContribution getSocialContribution(Integer userID) {
         appUserRepositoryImpl.updateUser(userID);
-        //String query = "SELECT * from SocialContribution where appUserId=" + userID;
-        //return entityManager.createQuery(query, SocialContribution.class).getSingleResult();
         return entityManager.createQuery("SELECT s FROM SocialContribution s WHERE s.appUser.id LIKE :userID", SocialContribution.class)
                 .setParameter("userID", Long.valueOf(userID))
                 .getSingleResult();
@@ -35,11 +35,10 @@ public class SocialContributionRepositoryImpl {
         while (iterator.hasNext()) {
             AppUser tmp = iterator.next();
 
-            if (tmp.getId().equals(userID)) {
+            if (tmp.getId().equals(Long.valueOf(userID))) {
                 tmp.getSocialContribution().getRent().setAmount(rent.getAmount());
                 tmp.getSocialContribution().getRent().setFromDate(rent.getFromDate());
-                tmp.getSocialContribution().getRent().setId(rent.getId());
-                tmp.getSocialContribution().getRent().setPaid(rent.isPaid());
+                tmp.getSocialContribution().getRent().setPaid(true);
                 tmp.getSocialContribution().getRent().setToDate(rent.getToDate());
                 entityManager.merge(tmp);
                 break;

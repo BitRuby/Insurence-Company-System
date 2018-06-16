@@ -18,11 +18,6 @@ public class AppUserRepositoryImpl {
     @PersistenceContext
     private EntityManager em;
 
-    @Autowired
-    @Lazy
-    private AppUserRepository appUserRepository;
-
-
     public List<AppUser> getUsersList() {
         String query = "from AppUser user";
         return em.createQuery(query, AppUser.class).getResultList();
@@ -131,6 +126,7 @@ public class AppUserRepositoryImpl {
 
     }
 
+    @Transactional
     public AppUser updateUser(Integer userID) {
         List<AppUser> users = this.getUsersList();
         Iterator<AppUser> iterator = users.iterator();
@@ -139,18 +135,9 @@ public class AppUserRepositoryImpl {
         while (iterator.hasNext()) {
              tmp = iterator.next();
 
-            if(tmp.getId().equals(userID)) {
+            if(tmp.getId().equals(Long.valueOf(userID))) {
                 tmp.updateData();
-                /*
-                    TODO jesli nie bedzie dzialac uzyc:
-
-                    public void updateArtist(Artist artist) {
-                        manager.getTransaction().begin();
-                        manager.merge(artist);
-                        manager.getTransaction().commit();
-                    }
-                 */
-                appUserRepository.save(tmp);
+                em.merge(tmp);
                 break;
             }
         }

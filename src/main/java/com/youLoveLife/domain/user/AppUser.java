@@ -175,13 +175,16 @@ public class AppUser implements UserDetails {
 
     @JsonIgnore
     public Job getLastJob() {
-	    Iterator<Job> it = jobsList.iterator();
-	    Job lastJob = null;
+	    if(jobsList != null) {
+			Iterator<Job> it = jobsList.iterator();
+			Job lastJob = null;
 
-	    while (it.hasNext())
-            lastJob = it.next();
+			while (it.hasNext())
+				lastJob = it.next();
 
-	    return lastJob;
+			return lastJob;
+		}
+		return null;
     }
 
     @JsonIgnore

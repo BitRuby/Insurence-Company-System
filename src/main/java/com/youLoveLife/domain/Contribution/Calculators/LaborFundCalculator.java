@@ -54,19 +54,22 @@ public class LaborFundCalculator {
     }
 
     public boolean checkIfActuallyWork() {
-        Iterator<Job> iterator = this.jobsList.iterator();
-        Job job = null;
+        if(jobsList != null) {
+            Iterator<Job> iterator = this.jobsList.iterator();
+            Job job = null;
 
-        while (iterator.hasNext())
-            job = iterator.next();
+            while (iterator.hasNext())
+                job = iterator.next();
 
-        if(job != null) {
-            if (job.getToDate().after(new Date()))
-                return true;
-            else
+            if (job != null) {
+                if (job.getToDate().after(new Date()))
+                    return true;
+                else
+                    return false;
+            } else
                 return false;
-        } else
-            return false;
+        }
+        return false;
     }
 
     public boolean checkIfWorkedOverYear() {

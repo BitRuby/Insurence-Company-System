@@ -16,21 +16,24 @@ public class SocialContributionCalculator {
     }
 
     private double getTotalRemuneration() {
-        Iterator<Job> iterator = jobsList.iterator();
-        double totalSalary = 0;
-        double contribution = 0;
-        int numberMonthsOfWork = 0;
+        if(jobsList != null) {
+            Iterator<Job> iterator = jobsList.iterator();
+            double totalSalary = 0;
+            double contribution = 0;
+            int numberMonthsOfWork = 0;
 
-        while (iterator.hasNext()) {
-            Job temp = iterator.next();
-            Date from = temp.getFromDate();
-            Date to = temp.getToDate();
-            Double salary = temp.getSalary();
-            numberMonthsOfWork = Tools.monthsBetween(from, to);
-            totalSalary += salary * numberMonthsOfWork;
-            contribution += (totalSalary * 0.17) + (totalSalary * 0.11);
+            while (iterator.hasNext()) {
+                Job temp = iterator.next();
+                Date from = temp.getFromDate();
+                Date to = temp.getToDate();
+                Double salary = temp.getSalary();
+                numberMonthsOfWork = Tools.monthsBetween(from, to);
+                totalSalary += salary * numberMonthsOfWork;
+                contribution += (totalSalary * 0.17) + (totalSalary * 0.11);
+            }
+            return contribution;
         }
-        return contribution;
+        return 0;
     }
 
 
