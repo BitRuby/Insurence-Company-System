@@ -76,6 +76,8 @@ public class MessageRepositoryImpl {
             getRentMessage(application);
         if(application.getType() == ApplicationType.NEW_COMPANY)
             getNewCompanyMessage(application);
+        if(application.getType() == ApplicationType.UNREGISTER_COMPANY)
+            getUnregisteredCompanyMessage(application);
     }
 
     private void getRentMessage(Application application) {
@@ -113,6 +115,29 @@ public class MessageRepositoryImpl {
         String message = "Witaj " + application.getName() + " " + application.getSurname() + ". " + "Twój wniosek o numerze " +
                 application.getApplicationID() + " został rozpatrzony i zatwierdzony przez administratora." +
                 " Twoja firma została zgłoszona do ubezpieczenia. Od dzisiaj możesz zgłaszać pracowników do ubezpieczenia." +
+                "\n\nSzczegółowe informacje:" +
+                "\nNumer wniosku: " + application.getApplicationID() +
+                "\nImię: " + application.getName() +
+                "\nNazwisko: " + application.getSurname() +
+                "\nMiasto: " + application.getCity() +
+                "\nBudynek: " + application.getBuilding() +
+                "\nUlica: " + application.getStreet() +
+                "\nKod pocztowy: " + application.getPostcode() +
+                "\nKraj: " + application.getCountry() +
+                "\nNazwa firmy: " + company.getCompanyName() +
+                "\nNIP: " + company.getNip() +
+                "\nREGON: " + company.getRegon();
+
+        sendMessage(topic, message, application.getUserID().intValue());
+    }
+
+    private void getUnregisteredCompanyMessage(Application application) {
+        Company company = companyRepository.getCompanyByUserID(application.getUserID().intValue());
+
+        String topic = "Zatwierdzenie twojego wniosku o wyrejestrowanie firmy";
+        String message = "Witaj " + application.getName() + " " + application.getSurname() + ". " + "Twój wniosek o numerze " +
+                application.getApplicationID() + " został rozpatrzony i zatwierdzony przez administratora." +
+                " Twoja firma została wyrejestrowana. Od dzisiaj nie możesz zgłaszać pracowników do ubezpieczenia." +
                 "\n\nSzczegółowe informacje:" +
                 "\nNumer wniosku: " + application.getApplicationID() +
                 "\nImię: " + application.getName() +

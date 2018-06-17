@@ -3,10 +3,13 @@ package com.youLoveLife.repository;
 import com.youLoveLife.domain.Company;
 import com.youLoveLife.domain.user.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,6 +18,11 @@ public class CompanyRepositoryImpl {
 
     @Autowired
     private AppUserRepository appUserRepository;
+    @Autowired
+    private AppUserRepositoryImpl appUserRepositoryImpl;
+    @Autowired
+    @Lazy
+    private MessageRepositoryImpl messageRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -82,6 +90,33 @@ public class CompanyRepositoryImpl {
                 }
             }
         }
+    }
 
+    public void unregisterCompany(Integer companyID) {
+        Company company = getCompanyByID(companyID);
+
+        List<AppUser> employees = company.getEmployees();
+
+        Iterator<AppUser> iterator = employees.iterator();
+        List<AppUser> employeesToRemove = new ArrayList<>();
+
+        while (iterator.hasNext()) {
+            AppUser appUser = iterator.next();
+            employeesToRemove.add(appUser);
+        }
+
+        Iterator<AppUser> iteratorToRemove = employeesToRemove.iterator();
+
+        while (iteratorToRemove.hasNext()) {
+            Integer id = iteratorToRemove.next().getId().intValue();
+            appUserRepositoryImpl.terminateContract(Long.valueOf(id));
+            deleteEmployee(Long.valueOf(id), Long.valueOf(companyID));
+            messageRepository.sendTerminateContractMessage(id, companyID);
+        }
+        AppUser owner = company.getOwner();
+        owner.setCurrentCompany(null);
+        owner.setOwnCompany(null);
+
+        entityManager.merge(owner);
     }
 }

@@ -29,7 +29,7 @@ public class CompanyRestController {
     private MessageRepositoryImpl messageRepository;
 
 
-    @RequestMapping(value = "/getAllCompanies")
+    @RequestMapping(value = "/getAllCompanies", method = RequestMethod.GET)
     public ResponseEntity getAllCompanies() {
         List<Company> list = companyRepository.getCompanyList();
 
@@ -64,7 +64,6 @@ public class CompanyRestController {
 
     @RequestMapping(value = "/unregisterCompany/{companyID}", method = RequestMethod.GET)
     public void unregisterCompany(Integer companyID) {
-
-
+        companyRepository.unregisterCompany(companyID);
     }
 }

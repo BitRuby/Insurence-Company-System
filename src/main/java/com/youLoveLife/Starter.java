@@ -1,14 +1,8 @@
 package com.youLoveLife;
 
-import com.youLoveLife.domain.Company;
-import com.youLoveLife.domain.Contribution.Job;
-import com.youLoveLife.domain.Contribution.Rent;
-import com.youLoveLife.domain.applications.Application;
-import com.youLoveLife.domain.user.Address;
-import com.youLoveLife.domain.user.AppUser;
-import com.youLoveLife.domain.user.CreatingUserTools;
-import com.youLoveLife.enums.ApplicationType;
+import com.youLoveLife.domain.Problem;
 import com.youLoveLife.repository.*;
+import com.youLoveLife.web.ProblemRestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Scope;
@@ -17,10 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 
 
 @Component
@@ -31,6 +21,7 @@ public class Starter implements CommandLineRunner {
     private AppUserRepositoryImpl repo;
     @Autowired
     private MessageRepositoryImpl repository;
+    /*
     @Autowired
     private ApplicationRepositoryImpl applicationRepository;
     @Autowired
@@ -41,6 +32,11 @@ public class Starter implements CommandLineRunner {
     private CompanyRepositoryImpl companyRepository;
     @PersistenceContext
     private EntityManager em;
+    @Autowired
+    private ProblemRepositoryImpl problemRepositoryImpl;
+    @Autowired
+    private ProblemRestController p;
+    */
 
     @Override
     @Transactional
@@ -75,23 +71,25 @@ public class Starter implements CommandLineRunner {
         }
 
 
-        Job job = new Job("Sprzątacz w " + company.getCompanyName(), CreatingUserTools.setDate(2018,05,16), CreatingUserTools.setDate(2021,5,16), Double.valueOf(2300), appUser);
+        Job job = new Job("Manager w " + company.getCompanyName(), CreatingUserTools.setDate(2018,05,17), CreatingUserTools.setDate(2021,5,16), Double.valueOf(2300), appUser);
 
         companyRepository.addNewEmployee(appUser, 1510);
 
         repo.addNewJob(appUser, company, job);
         repository.sendNewJobInfo(appUser, 1510, job);
         repo.updateUser(1541);
-
         */
 
 
+        //problemRepositoryImpl.readProblem(Long.valueOf(1621));
+        //p.deleteProblem(Long.valueOf(1621));
 
+        /*
         repo.terminateContract(Long.valueOf(1541));
         companyRepository.deleteEmployee(Long.valueOf(1541), Long.valueOf(1510));
         repo.updateUser(1541);
         repository.sendTerminateContractMessage(1541,1510);
-
+        */
     }
 
     /* TODO
@@ -108,6 +106,7 @@ drop table rent cascade constraint;
 drop table social_contribution cascade constraint;
 drop table application cascade constraint;
 drop table company cascade constraint;
+drop table problem cascade constraint;
 
      */
 }
