@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.youLoveLife.domain.Company;
 import com.youLoveLife.domain.Contribution.*;
 import com.youLoveLife.domain.Contribution.Calculators.HealthContributionCalculator;
 import com.youLoveLife.domain.Contribution.Calculators.LaborFundCalculator;
@@ -30,11 +31,20 @@ public class AppUser implements UserDetails {
 	@Embedded
 	private Address address;
 	private Date dateOfBirth;
+
 	@OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("appUser")
 	private List<Job> jobsList;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL, mappedBy = "appUser")
+	@ManyToOne
+	@JsonIgnoreProperties(value = {"employees", "owner"})
+	private Company currentCompany;
+
+	@OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL, mappedBy = "owner")
+	@JsonIgnoreProperties(value = {"employees", "owner"})
+	private Company ownCompany;
+
+	@OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL, mappedBy = "appUser")
 	@JsonIgnoreProperties("appUser")
     private SocialContribution socialContribution;
     @OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL, mappedBy = "appUser")
@@ -55,7 +65,7 @@ public class AppUser implements UserDetails {
 
 	}
 
-    public AppUser(String name, String surname, Address address, Date dateOfBirth, String username, String password, List<String> roles) {
+    public AppUser(String name, String surname, Address address, Date dateOfBirth, String username, String password, List<String> roles, Company currentCompany) {
         this.name = name;
         this.surname = surname;
         this.address = address;
@@ -66,11 +76,13 @@ public class AppUser implements UserDetails {
         this.socialContribution = new SocialContribution(this);
         this.healthContribution = new HealthContribution(this);
         this.laborFundContribution = new LaborFundContribution(this);
+        this.currentCompany = currentCompany;
+        this.jobsList = new ArrayList<>();
     }
 
     public void updateData() {
         HealthContributionCalculator healthContributionCalculator = new HealthContributionCalculator(getLastJob());
-        this.healthContribution.setAmount(healthContributionCalculator.calculateContribution());
+		this.healthContribution.setAmount(healthContributionCalculator.calculateContribution());
         if(this.healthContribution.getAmount() <= 0)
             this.healthContribution.setInsured(false);
         else
@@ -97,6 +109,8 @@ public class AppUser implements UserDetails {
 
         if(laborFundCalculator.checkIfActuallyWork())
 			laborFundContribution.setActive(true);
+        else
+        	laborFundContribution.setActive(false);
 
         laborFundContribution.setAmount(laborFundCalculator.calculateBenefit());
 
@@ -108,6 +122,10 @@ public class AppUser implements UserDetails {
         this.socialContribution.getPension().setFromDate(pensionCalculator.calculateFrom());
         this.socialContribution.getPension().setAmount(pensionCalculator.calculatePension());
     }
+
+    public void addNewJob(Job job) {
+		jobsList.add(job);
+	}
 
     public Long getId() {
 		return id;
@@ -273,18 +291,39 @@ public class AppUser implements UserDetails {
 		return Objects.hash(name, surname, address, username, password, roles);
 	}
 
-    @Override
-    public String toString() {
-        return "AppUser{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", address=" + address +
-                ", dateOfBirth=" + dateOfBirth +
-                ", jobsList=" + jobsList +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", roles=" + roles +
-                '}';
-    }
+	public Company getCurrentCompany() {
+		return currentCompany;
+	}
+
+	public void setCurrentCompany(Company currentCompany) {
+		this.currentCompany = currentCompany;
+	}
+
+	public Company getOwnCompany() {
+		return ownCompany;
+	}
+
+	public void setOwnCompany(Company ownCompany) {
+		this.ownCompany = ownCompany;
+	}
+
+	@Override
+	public String toString() {
+		return "AppUser{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", surname='" + surname + '\'' +
+				", address=" + address +
+				", dateOfBirth=" + dateOfBirth +
+				", jobsList=" + jobsList +
+				", currentCompany=" + currentCompany +
+				", ownCompany=" + ownCompany +
+				", socialContribution=" + socialContribution +
+				", healthContribution=" + healthContribution +
+				", laborFundContribution=" + laborFundContribution +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", roles=" + roles +
+				'}';
+	}
 }

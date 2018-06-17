@@ -1,8 +1,10 @@
 package com.youLoveLife.repository;
 
+import com.youLoveLife.domain.Company;
 import com.youLoveLife.domain.Contribution.Job;
 import com.youLoveLife.domain.user.Address;
 import com.youLoveLife.domain.user.AppUser;
+import com.youLoveLife.domain.user.CreatingUserTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
@@ -46,75 +48,83 @@ public class AppUserRepositoryImpl {
         role1.add("USER");
         role2.add("USER");
 
+        //********************** USER 1 *********************************//
+        Date dateOfBirth = CreatingUserTools.setDate(1970,3,24);
+
+        Address companyAddress = new Address("Pińczów", "10", "3 Maja", "28-400 Pińczów", "Polska");
+
+        AppUser company1Owner = new AppUser("Janusz", "Biznesu", companyAddress, dateOfBirth, "janusz", "janusz", role2, null);
+
+        Company company1 = new Company(company1Owner, "Spółdzielnia mieszkaniowa", companyAddress);
+        company1Owner.setCurrentCompany(company1);
+        company1Owner.setOwnCompany(company1);
+
+        List<Job> jobList3 = new ArrayList<>();
+
+        Date jobFrom = CreatingUserTools.setDate(1990,1,11);
+        Date jobTo = CreatingUserTools.setDate(2030,6,6);
+
+        Job job = new Job("Szef firmy w " + company1.getCompanyName(), jobFrom, jobTo, Double.valueOf(16000), company1Owner);
+        jobList3.add(job);
+
+        company1Owner.setJobsList(jobList3);
 
 
-        Address address1 = new Address("Pińczów", "12", "Grodziskowa", "28-400 Pińczów", "Polska");
-        Calendar cal = GregorianCalendar.getInstance();
-        cal.set(1960, 6, 11);
-        Date date1 = cal.getTime();
+        //***************************** USER 2 ***********************************//
+        Address address = new Address("Pińczów", "12", "Grodziskowa", "28-400 Pińczów", "Polska");
+        dateOfBirth = CreatingUserTools.setDate(1960,6,11);
 
-
-        AppUser user1 = new AppUser("Tadeusz", "Kozieł", address1, date1, "tadek", "tadek", role1);
+        AppUser user1 = new AppUser("Tadeusz", "Kozieł", address, dateOfBirth, "tadek", "tadek", role1, company1);
 
         List<Job> list1 = new ArrayList<>();
 
-        cal.set(1980,4,21);
-        Date jobDF1 = cal.getTime();
-        cal.set(1990,0,8);
-        Date jobDT1 = cal.getTime();
+        jobFrom = CreatingUserTools.setDate(1980,4,21);
+        jobTo = CreatingUserTools.setDate(1990,0,8);
+        job = new Job("Hydraulik", jobFrom, jobTo, Double.valueOf(1500), user1);
+        list1.add(job);
 
-        cal.set(1990,1,14);
-        Date jobDF2 = cal.getTime();
-        cal.set(2004,1,10);
-        Date jobDT2 = cal.getTime();
+        jobFrom = CreatingUserTools.setDate(1990,1,14);
+        jobTo = CreatingUserTools.setDate(2004,1,10);
+        job = new Job("Kierowca ciężarówki", jobFrom, jobTo, Double.valueOf(3000), user1);
+        list1.add(job);
 
-        cal.set(2004,3,18);
-        Date jobDF3 = cal.getTime();
-        cal.set(2008, 6, 10);
-        Date jobDT3 = cal.getTime();
+        jobFrom = CreatingUserTools.setDate(2004,3,18);
+        jobTo = CreatingUserTools.setDate(2008,6,10);
+        job = new Job("Hydraulik w Spółdzielni mieszkaniowej", jobFrom, jobTo, Double.valueOf(2500), user1);
+        list1.add(job);
 
-        cal.set(2008, 6,11);
-        Date jobDF4 = cal.getTime();
-        cal.set(2023, 7,25);
-        Date jobDT4 = cal.getTime();
-
-        Job job1 = new Job("Hydraulik", jobDF1, jobDT1, Double.valueOf(1500), user1);
-        Job job2 = new Job("Kierowca ciężarówki", jobDF2, jobDT2, Double.valueOf(3000), user1);
-        Job job3 = new Job("Hydraulik w Spółdzielni mieszkaniowej", jobDF3, jobDT3, Double.valueOf(2500), user1);
-        Job job4 = new Job("Zastępca Prezesa Zarządu w Spółdzielni mieszkaniowej", jobDF4, jobDT4, Double.valueOf(7000), user1);
-
-        list1.add(job1);
-        list1.add(job2);
-        list1.add(job3);
-        list1.add(job4);
+        jobFrom = CreatingUserTools.setDate(2008,6,11);
+        jobTo = CreatingUserTools.setDate(2023,7,25);
+        job = new Job("Zastępca Prezesa Zarządu w Spółdzielni mieszkaniowej", jobFrom, jobTo, Double.valueOf(7000), user1);
+        list1.add(job);
 
         user1.setJobsList(list1);
 
 
+        //******************* USER 3 ***************************************************
+        address = new Address("Kielce", "23", "Źródłowa", "25-335 Kielce", "Polska");
+        dateOfBirth = CreatingUserTools.setDate(1958,4,22);
 
+        AppUser user2 = new AppUser("Józef", "Kozieł", address, dateOfBirth, "jozek", "jozek", role2, null);
 
-        Address address2 = new Address("Kielce", "23", "Źródłowa", "25-335 Kielce", "Polska");
-        cal.set(1958, 4, 22);
-        Date date2 = cal.getTime();
-
-
-        AppUser user2 = new AppUser("Józef", "Kozieł", address2, date2, "jozek", "jozek", role2);
+        Company company2 = new Company(user2, "Firma budowlana", address);
 
         List<Job> list2 = new ArrayList<>();
 
-        cal.set(1980, 3,11);
-        Date job2DF = cal.getTime();
-        cal.set(2030,6,6);
-        Date job2DT = cal.getTime();
+        jobFrom = CreatingUserTools.setDate(1980,3,11);
+        jobTo = CreatingUserTools.setDate(2030,6,6);
 
-        Job job2J = new Job("Szef firmy", job2DF, job2DT, Double.valueOf(6000), user2);
+        job = new Job("Szef firmy w " + company2.getCompanyName(), jobFrom, jobTo, Double.valueOf(23000), user2);
+        list2.add(job);
 
         user2.setJobsList(list2);
+        user2.setOwnCompany(company2);
+        user2.setCurrentCompany(company2);
 
-        list2.add(job2J);
 
         user1.updateData();
         user2.updateData();
+        company1Owner.updateData();
 
 
         if(!isExistUser(user1, users)){
@@ -122,6 +132,9 @@ public class AppUserRepositoryImpl {
         }
         if(!isExistUser(user2, users)) {
             em.persist(user2);
+        }
+        if(!isExistUser(company1Owner, users)) {
+            em.persist(company1Owner);
         }
 
     }
@@ -143,6 +156,46 @@ public class AppUserRepositoryImpl {
         }
 
         return tmp;
+    }
+
+    public AppUser setUserOwnCopany(Company company) {
+        AppUser appUser = em.createQuery("select u from AppUser u where u.id like :id", AppUser.class)
+                .setParameter("id", company.getOwner().getId())
+                .getSingleResult();
+
+        Calendar c = GregorianCalendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.YEAR, 50);
+
+        Job job = new Job("Szef firmy w " + company.getCompanyName(), new Date(), c.getTime(), Double.valueOf(3000), appUser);
+        appUser.addNewJob(job);
+        appUser.setCurrentCompany(company);
+        appUser.setOwnCompany(company);
+
+        company.addNewEmployee(appUser);
+        em.merge(company);
+        return em.merge(appUser);
+    }
+
+    public AppUser addNewJob(AppUser employee, Company company, Job job) {
+        AppUser appUser = em.createQuery("select u from AppUser u where u.id like :id", AppUser.class)
+                .setParameter("id", employee.getId())
+                .getSingleResult();
+
+        appUser.addNewJob(job);
+        appUser.setCurrentCompany(company);
+
+        return em.merge(appUser);
+    }
+
+    public void terminateContract(Long userID) {
+        AppUser appUser = em.createQuery("select u from AppUser u where u.id like :id", AppUser.class)
+                .setParameter("id", userID)
+                .getSingleResult();
+
+        appUser.getLastJob().setToDate(new Date());
+        appUser.setCurrentCompany(null);
+        em.merge(appUser);
     }
 
 }

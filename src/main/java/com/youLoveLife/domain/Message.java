@@ -1,6 +1,7 @@
 package com.youLoveLife.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Message {
@@ -12,6 +13,7 @@ public class Message {
     @Column(length = 1024)
     private String message;
     private String topic;
+    private Date receivedDate;
 
     public Message() {
     }
@@ -21,6 +23,7 @@ public class Message {
         this.isReaded = false;
         this.topic = topic;
         this.message = message;
+        this.receivedDate = new Date();
     }
 
     public Long getId() {
@@ -63,6 +66,14 @@ public class Message {
         this.topic = topic;
     }
 
+    public Date getReceivedDate() {
+        return receivedDate;
+    }
+
+    public void setReceivedDate(Date receivedDate) {
+        this.receivedDate = receivedDate;
+    }
+
     @Override
     public String toString() {
         return "Message{" +
@@ -71,6 +82,7 @@ public class Message {
                 ", isReaded=" + isReaded +
                 ", message='" + message + '\'' +
                 ", topic='" + topic + '\'' +
+                ", receivedDate=" + receivedDate +
                 '}';
     }
 }

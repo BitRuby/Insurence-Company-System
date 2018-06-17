@@ -1,12 +1,14 @@
 package com.youLoveLife.domain.applications;
 
+import com.youLoveLife.enums.ApplicationType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class RentApplication {
+public class Application {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,11 +18,13 @@ public class RentApplication {
     private String city, building, street, postcode, country;
     private boolean isApproved;
     private Long userID;
+    private ApplicationType type;
 
-    public RentApplication() {
+    public Application() {
     }
 
-    public RentApplication(String name, String surname, String city, String building, String street, String postcode, String country, boolean isApproved, Long userID) {
+    public Application(ApplicationType type, String name, String surname, String city, String building, String street, String postcode, String country, boolean isApproved, Long userID) {
+        this.type = type;
         this.name = name;
         this.surname = surname;
         this.city = city;
@@ -112,9 +116,17 @@ public class RentApplication {
         this.userID = userID;
     }
 
+    public ApplicationType getType() {
+        return type;
+    }
+
+    public void setType(ApplicationType type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
-        return "RentApplicationRepository{" +
+        return "Application{" +
                 "applicationID=" + applicationID +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
@@ -125,6 +137,7 @@ public class RentApplication {
                 ", country='" + country + '\'' +
                 ", isApproved=" + isApproved +
                 ", userID=" + userID +
+                ", type=" + type +
                 '}';
     }
 }

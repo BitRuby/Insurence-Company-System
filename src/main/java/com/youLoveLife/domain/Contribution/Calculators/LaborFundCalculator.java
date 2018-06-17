@@ -18,7 +18,7 @@ public class LaborFundCalculator {
     }
 
     public double calculateBenefit() {
-        if(checkIfActuallyWork() && checkIfWorkedOverYear()) {
+        if(!checkIfActuallyWork() && checkIfWorkedOverYear()) {
             double yearsOfWork = numberMonthsOfWork() / 12;
 
             if(from == null) {

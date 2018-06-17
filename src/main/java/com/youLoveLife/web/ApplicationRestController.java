@@ -1,9 +1,8 @@
 package com.youLoveLife.web;
 
-import com.youLoveLife.domain.applications.RentApplication;
-import com.youLoveLife.repository.MessageRepository;
+import com.youLoveLife.domain.applications.Application;
+import com.youLoveLife.repository.ApplicationRepositoryImpl;
 import com.youLoveLife.repository.MessageRepositoryImpl;
-import com.youLoveLife.repository.RentApplicationRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,22 +15,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-public class RentApplicationRestController {
+public class ApplicationRestController {
 
     @Autowired
-    private RentApplicationRepositoryImpl rentApplicationRepository;
+    private ApplicationRepositoryImpl applicationRepository;
     @Autowired
     private MessageRepositoryImpl messageRepository;
 
 
-    @RequestMapping(value = "/sendRentApplication/", method = RequestMethod.POST)
-    public void sendApplication(@RequestBody RentApplication rentApplication) {
-        rentApplicationRepository.sendApplication(rentApplication);
+    @RequestMapping(value = "/sendApplication/", method = RequestMethod.POST)
+    public void sendApplication(@RequestBody Application application) {
+        applicationRepository.sendApplication(application);
     }
 
-    @RequestMapping(value = "/getAllRentApplication", method = RequestMethod.GET)
-    public ResponseEntity getAllRentApplication() {
-        List<RentApplication> list = rentApplicationRepository.getAllRentApplication();
+    @RequestMapping(value = "/getAllApplication", method = RequestMethod.GET)
+    public ResponseEntity getAllApplication() {
+        List<Application> list = applicationRepository.getAllApplication();
 
         if (list != null)
             return new ResponseEntity(list, HttpStatus.OK);
@@ -41,10 +40,8 @@ public class RentApplicationRestController {
 
     @RequestMapping(value = "/confirmApplication/{applicationID}", method = RequestMethod.GET)
     public void confirmApplication(@PathVariable Integer applicationID) {
-        RentApplication rentApplication = rentApplicationRepository.confirmApplication(applicationID);
+        Application rentApplication = applicationRepository.confirmApplication(applicationID);
         messageRepository.sendConfirmation(rentApplication);
     }
-
-    // TODO zrobic aktualizowanie z wysylaniem powiadomienia do uzytkownika o zaakceptowaniu wniosku
 
 }

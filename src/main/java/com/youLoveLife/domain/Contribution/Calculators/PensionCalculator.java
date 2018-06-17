@@ -14,7 +14,7 @@ public class PensionCalculator {
 
     public Double calculatePension() {
         double amontContribution = socialContributionCalculator.calculateContribution();
-        return amontContribution * 0.01;
+        return amontContribution * 0.003;
     }
 
     public Date calculateFrom() {

@@ -1,7 +1,7 @@
 package com.youLoveLife.repository;
 
 
-import com.youLoveLife.domain.applications.RentApplication;
+import com.youLoveLife.domain.applications.Application;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,26 +11,26 @@ import java.util.Iterator;
 import java.util.List;
 
 @Repository
-public class RentApplicationRepositoryImpl {
+public class ApplicationRepositoryImpl {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Transactional
-    public void sendApplication(RentApplication rentApplication) {
-        entityManager.persist(rentApplication);
+    public void sendApplication(Application application) {
+        entityManager.persist(application);
     }
 
     @Transactional
-    public List<RentApplication> getAllRentApplication() {
-        return entityManager.createQuery("select r from RentApplication r", RentApplication.class).getResultList();
+    public List<Application> getAllApplication() {
+        return entityManager.createQuery("select a from Application a", Application.class).getResultList();
     }
 
     @Transactional
-    public RentApplication confirmApplication(Integer applicationID) {
-        List<RentApplication> list = getAllRentApplication();
-        Iterator<RentApplication> iterator = list.iterator();
-        RentApplication tmp = null;
+    public Application confirmApplication(Integer applicationID) {
+        List<Application> list = getAllApplication();
+        Iterator<Application> iterator = list.iterator();
+        Application tmp = null;
 
         while (iterator.hasNext()) {
             tmp = iterator.next();
