@@ -54,6 +54,48 @@ angular
                 }
             },
         } 
+        var adminState = {
+            name: 'admin',
+            url: '/admin',
+            views: {
+                nav: {
+                    templateUrl: 'components/navigation/navigation.tpl.html',
+                    controller: 'navigationController as nav'
+                },
+                menu: {
+                    templateUrl: 'components/menu/menu.tpl.html',
+                    controller: 'menuController as menu'
+                },
+                content: {
+                    templateUrl: 'components/admin/admin.tpl.html',
+                    controller: 'adminController as adm'
+                }
+            },
+            data: {
+                role: 'ADMIN'
+            }
+        }
+        var adminNotState = {
+            name: 'adminNotifications',
+            url: '/admin/notifications',
+            views: {
+                nav: {
+                    templateUrl: 'components/navigation/navigation.tpl.html',
+                    controller: 'navigationController as nav'
+                },
+                menu: {
+                    templateUrl: 'components/menu/menu.tpl.html',
+                    controller: 'menuController as menu'
+                },
+                content: {
+                    templateUrl: 'components/admin/notifications/admin-notifications.tpl.html',
+                    controller: 'adminNotificationsController as admn'
+                }
+            },
+            data: {
+                role: 'ADMIN'
+            }
+        } 
         var defaultState = {
             name: 'default',
             url: '/',
@@ -65,6 +107,8 @@ angular
         $stateProvider.state(dashboardState);
         $stateProvider.state(userDetailsState);
         $stateProvider.state(defaultState);
+        $stateProvider.state(adminState);
+        $stateProvider.state(adminNotState);
     }
 ])
 .run(
@@ -81,16 +125,17 @@ angular
             else{
                 if (toState.data && toState.data.role) {
                     var hasAccess = false;
+                    var hasAdmin = false;
                     for (var i = 0; i < auth.user.roles.length; i++) {
                         var role = auth.user.roles[i];
                         if (toState.data.role == role) {
                             hasAccess = true;
                             break;
-                        }
+                        }             
                     }
                     if (!hasAccess) {
                         $state.go('login');
-                    }
+                    }     
                 }
                 if (toState.name == 'login'){
                     $state.go('dashboard');

@@ -6,6 +6,9 @@ angular.module('App')
 function AuthService(){
     return {
         user: null,
-        flag: false
+        flag: false,
+        isAdmin: function(element) {
+            return element == "ADMIN";
+        }
     }
 }

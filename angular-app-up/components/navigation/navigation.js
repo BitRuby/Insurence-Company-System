@@ -32,6 +32,7 @@
             RestServices.uncheckMessage(value).then(function() {
                self.topicM = RestServices.data().topic;
                self.messageM = RestServices.data().message;
+               self.receivedDate = RestServices.data().receivedDate;
                updateMessageNumber();
             }); 
         }

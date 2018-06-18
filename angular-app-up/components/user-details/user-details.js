@@ -24,6 +24,9 @@
             self.building = AuthService.user.address.building;
             self.roles = AuthService.user.roles;
         }
+        if (AuthService.user.roles.find(AuthService.isAdmin)){
+            self.adminTools = true;
+        }
         RestServices.healthContribution().then(function() {
             self.healthContributionView = RestServices.data().insured;
             self.healthContributionFromDate = RestServices.data().fromDate;
