@@ -63,6 +63,7 @@ public class MessageRepositoryImpl {
                 .getResultList();
     }
 
+    @Transactional
     public void readMessage(Integer messageID) {
         Message message = em.createQuery("SELECT m FROM Message m WHERE m.id LIKE :id", Message.class)
                 .setParameter("id", Long.valueOf(messageID))
@@ -71,6 +72,7 @@ public class MessageRepositoryImpl {
         em.merge(message);
     }
 
+    @Transactional
     public void sendConfirmation(Application application) {
         if(application.getType() == ApplicationType.RENT)
             getRentMessage(application);
@@ -154,6 +156,7 @@ public class MessageRepositoryImpl {
         sendMessage(topic, message, application.getUserID().intValue());
     }
 
+    @Transactional
     public void sendTerminateContractMessage(Integer userID, Integer companyID) {
         List<AppUser> list = appUserRepository.getUsersList();
         Iterator<AppUser> iterator = list.iterator();
@@ -193,6 +196,7 @@ public class MessageRepositoryImpl {
         sendMessage(topic, message, userID);
     }
 
+    @Transactional
     public void sendNewJobInfo(AppUser appUser, Integer companyID, Job job) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.M.yyyy");
         String from = sdf.format(job.getFromDate());
