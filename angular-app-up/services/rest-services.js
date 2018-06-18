@@ -23,6 +23,10 @@ function RestServices(AuthService, $http, $q){
             REST_SERVICE_URI = 'http://localhost:8090/receiveMessages/'+AuthService.user.id;
             return this.resolve();
         },
+        uncheckMessage: function(id){
+            REST_SERVICE_URI = 'http://localhost:8090/setAsReaded/'+id;
+            return this.resolve();
+        },
         resolve: function(){
             var deffered = $q.defer();
             $http({
