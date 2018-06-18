@@ -14,20 +14,25 @@
             AuthService.flag = true;
             $state.go('login');
         }
-        RestServices.receiveMessages().then(function() {
-            self.messages = RestServices.data();
-            var n = 0;
-            for (var i = 0; i< RestServices.data().length ; i++){
-                if (!RestServices.data()[i].readed) n++;
-            }
-            if (n!=0){
-                self.unread = n;
-                self.showBadge = true;
-            } 
-        });
+        function updateMessageNumber(){
+            RestServices.receiveMessages().then(function() {
+                self.messages = RestServices.data();
+                var n = 0;
+                for (var i = 0; i< RestServices.data().length ; i++){
+                    if (!RestServices.data()[i].readed) n++;
+                }
+                if (n!=0){
+                    self.unread = n;
+                    self.showBadge = true;
+                } 
+            });
+        }
+        updateMessageNumber();
         self.unCheckMessage = function(value){
             RestServices.uncheckMessage(value).then(function() {
-               
+               self.topicM = RestServices.data().topic;
+               self.messageM = RestServices.data().message;
+               updateMessageNumber();
             }); 
         }
         self.menu = function(){
@@ -56,8 +61,5 @@
             navSearch.css("display", "none");
             navbarHeader.css("float", "none");
         }
-        $(document).on('click', '.dropdown-menu', function (e) {
-            e.stopPropagation();
-        });
     }
 })();
