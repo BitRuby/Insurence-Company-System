@@ -29,7 +29,7 @@ public class AppUserRestController {
      *
      * @return list of all AppUser
      */
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public List<AppUser> users() {
         return appUserRepository.findAll();
@@ -41,7 +41,7 @@ public class AppUserRestController {
      * @param id appUser ID
      * @return appUser
      */
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     public ResponseEntity<AppUser> userById(@PathVariable Long id) {
         AppUser appUser = appUserRepository.findOne(id);

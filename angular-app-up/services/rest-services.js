@@ -27,6 +27,10 @@ function RestServices(AuthService, $http, $q){
             REST_SERVICE_URI = 'http://localhost:8090/setAsReaded/'+id;
             return this.resolve();
         },
+        findUser: function(keyword){
+            REST_SERVICE_URI = 'http://localhost:8090/users/'+keyword;
+            return this.resolve();
+        },
         resolve: function(){
             var deffered = $q.defer();
             $http({

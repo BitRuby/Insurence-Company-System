@@ -96,6 +96,27 @@ angular
                 role: 'ADMIN'
             }
         } 
+        var adminAppState = {
+            name: 'adminApplications',
+            url: '/admin/applications',
+            views: {
+                nav: {
+                    templateUrl: 'components/navigation/navigation.tpl.html',
+                    controller: 'navigationController as nav'
+                },
+                menu: {
+                    templateUrl: 'components/menu/menu.tpl.html',
+                    controller: 'menuController as menu'
+                },
+                content: {
+                    templateUrl: 'components/admin/applications/admin-applications.tpl.html',
+                    controller: 'adminApplicationsController as admn'
+                }
+            },
+            data: {
+                role: 'ADMIN'
+            }
+        } 
         var defaultState = {
             name: 'default',
             url: '/',
@@ -109,6 +130,7 @@ angular
         $stateProvider.state(defaultState);
         $stateProvider.state(adminState);
         $stateProvider.state(adminNotState);
+        $stateProvider.state(adminAppState);
     }
 ])
 .run(

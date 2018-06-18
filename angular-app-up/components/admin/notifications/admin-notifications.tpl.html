@@ -1,0 +1,44 @@
+<div id="main-content">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3>Manage notifications</h3>
+                        <hr class="hr-cart">
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <form class="form-inline">
+                                            <div class="form-group">
+                                                <label for="inputUser">Find user</label>
+                                                <input type="text" class="form-control" id="inputUser" ng-model="admn.userInput" ng-change="admn.userVal()" placeholder="Enter keyword">
+                                            </div>
+                                    </form>
+                            </div>
+                        </div>
+                        <div style="margin:10px 0;"></div>
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12">
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Firstname</th>
+                                        <th>Lastname</th> 
+                                        <th>Username</th> 
+                                        <th>Actions</th> 
+                                    </tr>
+                                    <tr ng-repeat="row in admn.userList">
+                                        <td>{{row.id}}</td>
+                                        <td>{{row.name}}</td>
+                                        <td>{{row.surname}}</td>
+                                        <td>{{row.username}}</td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                                <button class="btn btn-danger text-right" style="float:right">Send to all</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
