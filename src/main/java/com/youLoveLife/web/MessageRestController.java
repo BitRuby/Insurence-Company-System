@@ -50,8 +50,14 @@ public class MessageRestController {
     }
 
     @RequestMapping(value = "/setAsReaded/{messageID}", method = RequestMethod.GET)
-    public void setMessageAsReaded(@PathVariable Integer messageID) {
+    public ResponseEntity setMessageAsReaded(@PathVariable Integer messageID) {
         messageRepositoryImpl.readMessage(messageID);
+        Message message = messageRepository.getOne(Long.valueOf(messageID));
+
+        if(message != null)
+            return new ResponseEntity(message, HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @RequestMapping(value = "/deleteMessage/{id}", method = RequestMethod.DELETE)
