@@ -23,7 +23,7 @@
                             </li>
                             <ul class="notify-list">
                             <li class="notify-list-elem" ng-repeat="row in nav.messages">
-                                <a href ng-click="nav.unCheckMessage(row.id)"><h5 ng-style="!row.readed ? { 'font-weight': 'bold' } : {}">{{row.topic}}</h5></a>
+                                <a href="" data-toggle="modal" data-target="#messageDetails" ng-click="nav.unCheckMessage(row.id)"><h5 ng-style="!row.readed ? { 'font-weight': 'bold' } : {}">{{row.topic}}</h5></a>
                             </li>
                             </ul>
                         </ul>
@@ -51,31 +51,24 @@
             </div>
         </nav>
 
-  <!-- Message modal -->
-  <div class="modal fade" id="personalData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Personal data</h4>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <strong>Name</strong>
-                    <p>{{user.firstName}}</p>
-                    <strong>Surname</strong>
-                    <p>{{user.secondName}}</p>
+    <!-- Message modal -->
+    <div class="modal fade" id="messageDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{row.topicM}}</h4>
                 </div>
-                <div class="col-md-6">
-                    <strong>Date of birth</strong>
-                    <p>{{user.dateOfBirth | date:"MM/dd/yyyy"}}</p>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-11">
+                        <p>{{row.messageM}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
                 </div>
             </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
