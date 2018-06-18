@@ -1,8 +1,9 @@
 'use strict'; //Use Strict mode ES5
 angular
 .module('App', ['ui.router', 'hl.css.ui.router'])
-.config(['$stateProvider', '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider){
+.config(['$stateProvider', '$urlRouterProvider', '$qProvider',
+    function($stateProvider, $urlRouterProvider, $qProvider){
+        $qProvider.errorOnUnhandledRejections(false);
         var loginState = {
             name: 'login',
             url: '/login',

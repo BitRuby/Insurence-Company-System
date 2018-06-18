@@ -11,6 +11,16 @@ body{
     color: #373e48;
     font-size: 1.5em;
 }
+input[type="text"]
+{
+    font-family: "PT Sans Narrow", sans-serif;
+}
+
+textarea {
+    font-family: "PT Sans Narrow", sans-serif;
+    resize: none;
+    width: 100%;
+}
 p,li{
     font-family: "PT Sans Narrow", sans-serif;
 }
