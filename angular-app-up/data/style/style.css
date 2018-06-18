@@ -398,7 +398,7 @@ span.message{
     border-bottom: 1px solid #f4f4f4;
 }
 .notify-list-elem a{
-    padding: 7px;
+    padding: 7px 15px;
     display: -webkit-box;
 }
 .notify-list-elem:hover{
