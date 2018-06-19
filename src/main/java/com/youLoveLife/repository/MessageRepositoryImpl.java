@@ -242,7 +242,6 @@ public class MessageRepositoryImpl {
             if(messageIterator.hasNext()) {
                 while (messageIterator.hasNext()) {
                     Message messageFromDB = messageIterator.next();
-                    System.out.println("\n" + messageFromDB);
                     if (!messageFromDB.getTopic().equals(topic))
                         sendMessage(topic, message, user.getId().intValue());
                 }
