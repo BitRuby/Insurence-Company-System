@@ -150,7 +150,7 @@ angular
                 },
                 content: {
                     templateUrl: 'components/laborfund-contribution/laborfund-contribution.tpl.html',
-                    controller: 'laborFundContrController as nav'
+                    controller: 'laborFundContrController as lab'
                 }
             }
         }
@@ -168,7 +168,7 @@ angular
                 },
                 content: {
                     templateUrl: 'components/social-contribution/social-contribution.tpl.html',
-                    controller: 'socialContrController as nav'
+                    controller: 'socialContrController as soc'
                 }
             }
         }  
