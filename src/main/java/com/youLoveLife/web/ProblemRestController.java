@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,8 +20,16 @@ public class ProblemRestController {
     private ProblemRepository problemRepository;
 
     @RequestMapping(value = "/sendProblem/", method = RequestMethod.POST)
-    public void sendProblem(@RequestBody Problem problem) {
-        problemRepositoryImpl.sendProblem(problem);
+    public ResponseEntity sendProblem(@RequestParam String topic, @RequestParam String message) {
+        try {
+            Problem problem = new Problem(topic, message);
+            problemRepositoryImpl.sendProblem(problem);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @RequestMapping(value = "/getAllProblems", method = RequestMethod.GET)
@@ -38,13 +43,25 @@ public class ProblemRestController {
     }
 
     @RequestMapping(value = "/readProblem/{problemID}", method = RequestMethod.GET)
-    public void readProblem(@PathVariable Long problemID) {
-        problemRepositoryImpl.readProblem(problemID);
+    public ResponseEntity readProblem(@PathVariable Long problemID) {
+        try {
+            problemRepositoryImpl.readProblem(problemID);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @RequestMapping(value = "/deleteProblem/{id}", method = RequestMethod.DELETE)
-    public void deleteProblem(@PathVariable Long id) {
-        Problem problem = problemRepository.findOne(id);
-        problemRepository.delete(problem);
+    public ResponseEntity deleteProblem(@PathVariable Long id) {
+        try {
+            Problem problem = problemRepository.findOne(id);
+            problemRepository.delete(problem);
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
