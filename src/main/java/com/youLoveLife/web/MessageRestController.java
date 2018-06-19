@@ -23,9 +23,17 @@ public class MessageRestController {
     private MessageRepository messageRepository;
 
     @RequestMapping(value = "/messageToAll", method = RequestMethod.POST)
-    public void sendMessageToEveryone(@RequestParam String topic, @RequestParam String message) {
+    public ResponseEntity sendMessageToEveryone(@RequestParam String topic, @RequestParam String message) {
         System.out.println("\n\n\n\n******************************************\n" + topic + "\n" + message + "***************************");
-        messageRepositoryImpl.sendEveryone(topic, message);
+
+        try {
+            messageRepositoryImpl.sendEveryone(topic, message);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @RequestMapping(value = "/messageToUser/", method = RequestMethod.POST)
