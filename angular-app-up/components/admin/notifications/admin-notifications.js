@@ -22,10 +22,27 @@
         }
         self.setUser = function(id){
             RestServices.findUserById(id).then(function(){
-                console.log(RestServices.data());
                 self.name = RestServices.data().name + " " + RestServices.data().surname;
                 self.username = RestServices.data().username;
                 id = RestServices.data().id;
+            });
+        }
+        self.submitAll = function(){
+            var params = {
+                topic: self.subjectAllInput,
+                message: self.messageAllInput
+            }
+            RestServices.sendMessageToAll(params).then(function(){
+                console.log("Xaxa");
+            });
+        }
+        self.submitUser = function(){
+            var params = {
+                topic: self.subjectUserInput,
+                message: self.messageUserInput
+            }
+            RestServices.sendMessageToUser(params).then(function(){
+                console.log("Xaxa");
             });
         }
     }

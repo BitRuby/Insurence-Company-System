@@ -22,7 +22,7 @@ public class MessageRestController {
     @Autowired
     private MessageRepository messageRepository;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/messageToAll/", method = RequestMethod.POST)
     public void sendMessageToEveryone(@RequestBody String topic, @RequestBody String message) {
         messageRepositoryImpl.sendEveryone(topic, message);
