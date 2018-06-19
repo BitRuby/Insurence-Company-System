@@ -1,11 +1,14 @@
 package com.youLoveLife;
 
 import com.youLoveLife.domain.Problem;
+import com.youLoveLife.domain.user.AppUser;
 import com.youLoveLife.repository.*;
+import com.youLoveLife.web.AppUserRestController;
 import com.youLoveLife.web.ProblemRestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,13 +24,16 @@ public class Starter implements CommandLineRunner {
     private AppUserRepositoryImpl repo;
     @Autowired
     private MessageRepositoryImpl repository;
-    /*
+
+    @Autowired
+    private AppUserRestController rest;
+
     @Autowired
     private ApplicationRepositoryImpl applicationRepository;
     @Autowired
     private SocialContributionRepositoryImpl contributionRepository;
     @Autowired
-    private AppUserRepository appUserRepository;
+    private AppUserRepository appUserRepository;/*
     @Autowired
     private CompanyRepositoryImpl companyRepository;
     @PersistenceContext
@@ -43,6 +49,12 @@ public class Starter implements CommandLineRunner {
     public void run(String... strings) throws Exception {
         repo.setFirstUsers();
         repository.sendEveryone("Bicz", "Biczes");
+        //AppUser u = appUserRepository.findOne(Long.valueOf(1824));
+
+        //ResponseEntity a = rest.userById(Long.valueOf(1824));
+        //AppUser u = (AppUser) a.getBody();
+
+        //System.out.println("\n\n\n\n\n\n\n\n*******************************************\n\n" + u + "\n\n\n\n\n\n\n*************************");
 
         /*
         List<String> role2 = new ArrayList<>();
@@ -90,6 +102,8 @@ public class Starter implements CommandLineRunner {
         repo.updateUser(1541);
         repository.sendTerminateContractMessage(1541,1510);
         */
+
+
     }
 
     /* TODO

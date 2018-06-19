@@ -13,9 +13,6 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long companyID;
-
-
-
     private String companyName;
     @Embedded
     private Address address;
@@ -119,7 +116,7 @@ public class Company {
                 ", address=" + address +
                 ", nip='" + nip + '\'' +
                 ", regon='" + regon + '\'' +
-                ", employees=" + employees +
+                //", employees=" + employees +
                 '}';
     }
 }

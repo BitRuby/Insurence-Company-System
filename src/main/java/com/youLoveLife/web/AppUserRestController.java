@@ -18,7 +18,6 @@ import java.util.List;
  * this rest controller will be only accessible for ADMIN users only
  */
 @RestController
-@RequestMapping(value = "/api")
 public class AppUserRestController {
     @Autowired
     @Qualifier("appUserRepository")
@@ -42,13 +41,15 @@ public class AppUserRestController {
      * @return appUser
      */
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)//headers = ("content-type=multipart/form-data"),
     public ResponseEntity<AppUser> userById(@PathVariable Long id) {
+        System.out.println("-----------------------------------------------------------------------------------------------");
         AppUser appUser = appUserRepository.findOne(id);
+        System.out.println("\n\n\n\n\n\n\n\n*******************************************\n\n" + appUser + "\n\n\n\n\n\n\n*************************");
         if (appUser == null) {
-            return new ResponseEntity<AppUser>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
         } else {
-            return new ResponseEntity<AppUser>(appUser, HttpStatus.OK);
+            return new ResponseEntity(appUser, HttpStatus.OK);
         }
     }
 

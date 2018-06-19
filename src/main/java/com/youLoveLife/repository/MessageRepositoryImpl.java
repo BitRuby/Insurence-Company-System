@@ -224,5 +224,10 @@ public class MessageRepositoryImpl {
         sendMessage(topic, message, appUser.getId().intValue());
     }
 
-
+    public void sendWelcomeMessage() {
+        String topic = "Witaj w systemie!";
+        String message = "Witaj. Od dzisiaj możesz korzystać z funkcjonalności systemu. Możesz sprawdzać swoje dane o ubezpieczeniach, rencie," +
+                " emeryturze. Dodatkowo możesz składać wnioski o rentę, założenie firmy, wyrejestrowanie firmy. Jeśli już jesteś przedsiębiorcą " +
+                "możesz zgłaszać pracowników lub ich wyrejestrowywać. Życzymy miłego korzystana z systemu.";
+    }
 }

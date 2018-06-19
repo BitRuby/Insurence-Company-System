@@ -65,7 +65,7 @@ public class AppUser implements UserDetails {
 
 	}
 
-    public AppUser(String name, String surname, Address address, Date dateOfBirth, String username, String password, List<String> roles, Company currentCompany) {
+    public AppUser(String name, String surname, Address address, Date dateOfBirth, String username, String password, List<String> roles) {
         this.name = name;
         this.surname = surname;
         this.address = address;
@@ -76,7 +76,6 @@ public class AppUser implements UserDetails {
         this.socialContribution = new SocialContribution(this);
         this.healthContribution = new HealthContribution(this);
         this.laborFundContribution = new LaborFundContribution(this);
-        this.currentCompany = currentCompany;
         this.jobsList = new ArrayList<>();
     }
 
@@ -316,8 +315,8 @@ public class AppUser implements UserDetails {
 				", address=" + address +
 				", dateOfBirth=" + dateOfBirth +
 				", jobsList=" + jobsList +
-				", currentCompany=" + currentCompany +
-				", ownCompany=" + ownCompany +
+				//", currentCompany=" + currentCompany +
+				//", ownCompany=" + ownCompany +
 				", socialContribution=" + socialContribution +
 				", healthContribution=" + healthContribution +
 				", laborFundContribution=" + laborFundContribution +

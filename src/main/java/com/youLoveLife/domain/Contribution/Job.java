@@ -23,12 +23,11 @@ public class Job {
     public Job() {
     }
 
-    public Job(String companyInfo, Date from, Date to, Double salary, AppUser appUser) {
+    public Job(String companyInfo, Date from, Date to, Double salary) {
         this.companyInfo = companyInfo;
         this.fromDate = from;
         this.toDate = to;
         this.salary = salary;
-        this.appUser = appUser;
     }
 
     public Long getId() {
