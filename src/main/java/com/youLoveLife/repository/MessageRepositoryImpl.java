@@ -239,11 +239,15 @@ public class MessageRepositoryImpl {
             List<Message> messages = receiveMessages(user.getId().intValue());
             Iterator<Message> messageIterator = messages.iterator();
 
-            while (messageIterator.hasNext()) {
-                Message messageFromDB = messageIterator.next();
-                if(!messageFromDB.getTopic().equals(topic))
-                    sendMessage(topic, message, user.getId().intValue());
-            }
+            if(messageIterator.hasNext()) {
+                while (messageIterator.hasNext()) {
+                    Message messageFromDB = messageIterator.next();
+                    System.out.println("\n" + messageFromDB);
+                    if (!messageFromDB.getTopic().equals(topic))
+                        sendMessage(topic, message, user.getId().intValue());
+                }
+            } else
+                sendMessage(topic, message, user.getId().intValue());
         }
     }
 }

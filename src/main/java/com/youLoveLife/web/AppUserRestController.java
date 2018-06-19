@@ -43,9 +43,8 @@ public class AppUserRestController {
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)//headers = ("content-type=multipart/form-data"),
     public ResponseEntity<AppUser> userById(@PathVariable Long id) {
-        System.out.println("-----------------------------------------------------------------------------------------------");
         AppUser appUser = appUserRepository.findOne(id);
-        System.out.println("\n\n\n\n\n\n\n\n*******************************************\n\n" + appUser + "\n\n\n\n\n\n\n*************************");
+
         if (appUser == null) {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         } else {
