@@ -42,7 +42,7 @@ public class MessageRestController {
             while (iterator.hasNext()) {
                 messageRepositoryImpl.sendMessage(topic, message, iterator.next().getId().intValue());
             }
-            return new ResponseEntity(HttpStatus.OK)ł
+            return new ResponseEntity(HttpStatus.OK);
         }catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
