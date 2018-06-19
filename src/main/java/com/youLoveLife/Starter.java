@@ -48,7 +48,6 @@ public class Starter implements CommandLineRunner {
     @Transactional
     public void run(String... strings) throws Exception {
         repo.setFirstUsers();
-        //repository.sendEveryone("Bicz", "Biczes");
         repository.sendWelcomeMessage();
         //AppUser u = appUserRepository.findOne(Long.valueOf(1824));
 
