@@ -11,14 +11,14 @@
                         <hr class="hr-cart">
                         <ul class="nav nav-tabs">
                                 <li role="presentation" ng-class="{ active: isSet(1) }"><a href ng-click="setTab(1)">Summary</a></li>
-                                <li role="presentation" ng-class="{ active: isSet(2) }"><a href ng-click="setTab(1)">History</a></li>
-                                <li role="presentation" ng-class="{ active: isSet(3) }"><a href ng-click="setTab(2)">Applications</a></li>
+                                <li role="presentation" ng-class="{ active: isSet(2) }"><a href ng-click="setTab(2)">History</a></li>
+                                <li role="presentation" ng-class="{ active: isSet(3) }"><a href ng-click="setTab(3)">Applications</a></li>
                         </ul>
                         <div ng-show="isSet(1)">
                             <div ng-show="hea.active">
                                   <div class="row">
                                       <div class="col-md-6">
-                                            <h4>Total amount: <spann class="text-primary">${{hea.amount}}</span></h4>
+                                            <h4>Total amount: <span class="text-primary">${{hea.amount}}</span></h4>
                                             <p>Date: {{hea.date | date:"MM/dd/yyyy HH:MM"}}</p>
                                             <p>Insurence status: Insured ( Insurence ID# {{hea.insIden}} )</p>
                                       </div>
@@ -31,6 +31,9 @@
                         <div ng-show="isSet(2)">
                                
                         </div>  
+                        <div ng-show="isSet(3)">
+                               
+                            </div>  
                     </div>
                 </div>
             </div>
