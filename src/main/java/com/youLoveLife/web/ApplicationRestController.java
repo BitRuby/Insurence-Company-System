@@ -24,8 +24,15 @@ public class ApplicationRestController {
 
 
     @RequestMapping(value = "/sendApplication/", method = RequestMethod.POST)
-    public void sendApplication(@RequestBody Application application) {
-        applicationRepository.sendApplication(application);
+    public ResponseEntity sendApplication(@RequestBody Application application) {
+        try {
+            applicationRepository.sendApplication(application);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @RequestMapping(value = "/getAllApplication", method = RequestMethod.GET)
@@ -39,9 +46,16 @@ public class ApplicationRestController {
     }
 
     @RequestMapping(value = "/confirmApplication/{applicationID}", method = RequestMethod.GET)
-    public void confirmApplication(@PathVariable Integer applicationID) {
-        Application rentApplication = applicationRepository.confirmApplication(applicationID);
-        messageRepository.sendConfirmation(rentApplication);
+    public ResponseEntity confirmApplication(@PathVariable Integer applicationID) {
+        try {
+            Application rentApplication = applicationRepository.confirmApplication(applicationID);
+            messageRepository.sendConfirmation(rentApplication);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
