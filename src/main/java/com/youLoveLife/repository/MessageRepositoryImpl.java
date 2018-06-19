@@ -229,5 +229,21 @@ public class MessageRepositoryImpl {
         String message = "Witaj. Od dzisiaj możesz korzystać z funkcjonalności systemu. Możesz sprawdzać swoje dane o ubezpieczeniach, rencie," +
                 " emeryturze. Dodatkowo możesz składać wnioski o rentę, założenie firmy, wyrejestrowanie firmy. Jeśli już jesteś przedsiębiorcą " +
                 "możesz zgłaszać pracowników lub ich wyrejestrowywać. Życzymy miłego korzystana z systemu.";
+
+        List<AppUser> users = appUserRepository.getUsersList();
+        Iterator<AppUser> iterator = users.iterator();
+
+
+        while (iterator.hasNext()) {
+            AppUser user = iterator.next();
+            List<Message> messages = receiveMessages(user.getId().intValue());
+            Iterator<Message> messageIterator = messages.iterator();
+
+            while (messageIterator.hasNext()) {
+                Message messageFromDB = messageIterator.next();
+                if(!messageFromDB.getTopic().equals(topic))
+                    sendMessage(topic, message, user.getId().intValue());
+            }
+        }
     }
 }
