@@ -74,8 +74,16 @@ public class MessageRestController {
     }
 
     @RequestMapping(value = "/deleteMessage/{id}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable Long id) {
-        Message message = messageRepository.findOne(id);
-        messageRepository.delete(message);
+    public ResponseEntity deleteUser(@PathVariable Long id) {
+        try {
+            Message message = messageRepository.findOne(id);
+            messageRepository.delete(message);
+            return new ResponseEntity(HttpStatus.OK);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return new ResponseEntity(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 }
