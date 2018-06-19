@@ -206,8 +206,8 @@ public class AppUserRepositoryImpl {
     }
 
     public List<AppUser> getUsersBySurname(String surname) {
-        return em.createQuery("select u from AppUser u where u.surname like :surname", AppUser.class)
-                .setParameter("surname", surname)
+        return em.createQuery("select u from AppUser u where ( u.surname like :surname or u.name like :surname )", AppUser.class)
+                .setParameter("surname", "%" + surname + "%")
                 .getResultList();
     }
 
