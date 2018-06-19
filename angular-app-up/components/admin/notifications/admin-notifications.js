@@ -33,7 +33,6 @@
                 message: self.messageAllInput
             }
             RestServices.sendMessageToAll(params).then(function(){
-                console.log("Xaxa");
             });
         }
         self.submitUser = function(){
@@ -43,7 +42,6 @@
                 message: self.messageUserInput
             }
             RestServices.sendMessageToUser(params).then(function(){
-                console.log("Xaxa");
             });
         }
     }

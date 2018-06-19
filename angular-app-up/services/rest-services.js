@@ -41,11 +41,11 @@ function RestServices(AuthService, $http, $q){
         },
         sendMessageToAll: function(obj){
             REST_SERVICE_URI = 'http://localhost:8090/messageToAll';
-            return this.resolvePOST(obj);
+            return this.resolveWithPost(obj);
         },
         sendMessageToUser: function(obj){
             REST_SERVICE_URI = 'http://localhost:8090/messageToUser';
-            return this.resolvePOST(obj);
+            return this.resolveWithPost(obj);
         },
         resolve: function(){
             var deffered = $q.defer();
@@ -63,13 +63,12 @@ function RestServices(AuthService, $http, $q){
             });
             return deffered.promise;
         },
-        resolvePOST: function(obj){
+        resolveWithPost: function(params){
             var deffered = $q.defer();
             $http({
                 url: REST_SERVICE_URI,
-                method: "GET",
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-                obj
+                method: "POST",
+                params
             }).then(function (response) {
                 deffered.resolve(response);  
                 if (response.data){
