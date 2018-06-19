@@ -18,13 +18,16 @@
             RestServices.receiveMessages().then(function() {
                 self.messages = RestServices.data();
                 var n = 0;
-                for (var i = 0; i< RestServices.data().length ; i++){
+                for (var i = 0; i< RestServices.data().length ; i++){  
                     if (!RestServices.data()[i].readed) n++;
                 }
                 if (n!=0){
                     self.unread = n;
                     self.showBadge = true;
                 } 
+                else{
+                    self.showBadge = false;
+                }
             });
         }
         updateMessageNumber();
