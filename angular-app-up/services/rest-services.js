@@ -31,6 +31,10 @@ function RestServices(AuthService, $http, $q){
             REST_SERVICE_URI = 'http://localhost:8090/searchUsersBySurname/'+keyword;
             return this.resolve();
         },
+        findUserById: function(keyword){
+            REST_SERVICE_URI = 'http://localhost:8090/users/'+keyword;
+            return this.resolve();
+        },
         showAllUsers: function(keyword){
             REST_SERVICE_URI = 'http://localhost:8090/users';
             return this.resolve();

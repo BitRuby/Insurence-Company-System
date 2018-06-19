@@ -36,7 +36,8 @@
                                         <td>{{row.name}}</td>
                                         <td>{{row.surname}}</td>
                                         <td>{{row.username}}</td>
-                                        <td></td>
+                                        <td><i class="fa fa-envelope" aria-hidden="true" data-toggle="modal" ng-click="admn.setUser(row.id)" data-target="#sendMessage" style="color: #00a8ff;font-size: 1.1em;cursor:pointer;"></i>
+                                        </td>
                                     </tr>
                                 </table>
                                 <button class="btn btn-danger text-right" style="float:right" data-toggle="modal" data-target="#sendMessageAll">Send to all</button>
@@ -55,6 +56,35 @@
                 <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Send message to all</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                                <div class="form-group">
+                                        <label for="inputUser">Subject</label>
+                                        <input type="text" class="form-control" id="inputUser">
+                                </div>
+                                <div class="form-group">
+                                        <label for="inputUser">Message</label>
+                                        <textarea class="form-control" rows="20"></textarea>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+         <!-- Send message to suer modal -->
+     <div class="modal fade" id="sendMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Send message to {{admn.name}} ({{admn.username}})</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
