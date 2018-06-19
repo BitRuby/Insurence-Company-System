@@ -24,7 +24,7 @@
             RestServices.findUserById(id).then(function(){
                 self.name = RestServices.data().name + " " + RestServices.data().surname;
                 self.username = RestServices.data().username;
-                id = RestServices.data().id;
+                this.id = RestServices.data().id;
             });
         }
         self.submitAll = function(){
@@ -38,6 +38,7 @@
         }
         self.submitUser = function(){
             var params = {
+                id: this.id,
                 topic: self.subjectUserInput,
                 message: self.messageUserInput
             }

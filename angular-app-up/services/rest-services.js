@@ -67,8 +67,9 @@ function RestServices(AuthService, $http, $q){
             var deffered = $q.defer();
             $http({
                 url: REST_SERVICE_URI,
-                method: "POST",
-                obj,
+                method: "GET",
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                obj
             }).then(function (response) {
                 deffered.resolve(response);  
                 if (response.data){
