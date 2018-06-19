@@ -2,6 +2,7 @@ package com.youLoveLife.web;
 
 import com.youLoveLife.domain.user.AppUser;
 import com.youLoveLife.repository.AppUserRepository;
+import com.youLoveLife.repository.AppUserRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,8 @@ public class AppUserRestController {
     @Autowired
     @Qualifier("appUserRepository")
     private AppUserRepository appUserRepository;
+    @Autowired
+    private AppUserRepositoryImpl appUserRepositoryImpl;
 
     /**
      * Web service for getting all the appUsers in the application.
@@ -50,6 +53,16 @@ public class AppUserRestController {
         } else {
             return new ResponseEntity(appUser, HttpStatus.OK);
         }
+    }
+
+    @RequestMapping(value = "/searchUsersBySurname/{surname}", method = RequestMethod.GET)
+    public ResponseEntity getUsersBySurname(@PathVariable String surname) {
+        List<AppUser> list = appUserRepositoryImpl.getUsersBySurname(surname);
+
+        if(list != null)
+            return new ResponseEntity(list, HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     /**

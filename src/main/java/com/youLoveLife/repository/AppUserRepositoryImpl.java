@@ -205,4 +205,10 @@ public class AppUserRepositoryImpl {
         em.merge(appUser);
     }
 
+    public List<AppUser> getUsersBySurname(String surname) {
+        return em.createQuery("select u from AppUser u where u.surname like :surname", AppUser.class)
+                .setParameter("surname", surname)
+                .getResultList();
+    }
+
 }
