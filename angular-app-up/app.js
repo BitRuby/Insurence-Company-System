@@ -117,7 +117,61 @@ angular
             data: {
                 role: 'ADMIN'
             }
+        }
+        var healthContrState = {
+            name: 'healthContr',
+            url: '/healthContribution',
+            views: {
+                nav: {
+                    templateUrl: 'components/navigation/navigation.tpl.html',
+                    controller: 'navigationController as nav'
+                },
+                menu: {
+                    templateUrl: 'components/menu/menu.tpl.html',
+                    controller: 'menuController as menu'
+                },
+                content: {
+                    templateUrl: 'components/health-contribution/health-contribution.tpl.html',
+                    controller: 'healthContrController as hea'
+                }
+            }
         } 
+        var laborFundContrState = {
+            name: 'laborFundContr',
+            url: '/laborFundContribution',
+            views: {
+                nav: {
+                    templateUrl: 'components/navigation/navigation.tpl.html',
+                    controller: 'navigationController as nav'
+                },
+                menu: {
+                    templateUrl: 'components/menu/menu.tpl.html',
+                    controller: 'menuController as menu'
+                },
+                content: {
+                    templateUrl: 'components/laborfund-contribution/laborfund-contribution.tpl.html',
+                    controller: 'laborFundContrController as nav'
+                }
+            }
+        }
+        var socialContrState = {
+            name: 'socialContr',
+            url: '/socialContribution',
+            views: {
+                nav: {
+                    templateUrl: 'components/navigation/navigation.tpl.html',
+                    controller: 'navigationController as nav'
+                },
+                menu: {
+                    templateUrl: 'components/menu/menu.tpl.html',
+                    controller: 'menuController as menu'
+                },
+                content: {
+                    templateUrl: 'components/social-contribution/social-contribution.tpl.html',
+                    controller: 'socialContrController as nav'
+                }
+            }
+        }  
         var defaultState = {
             name: 'default',
             url: '/',
@@ -132,6 +186,9 @@ angular
         $stateProvider.state(adminState);
         $stateProvider.state(adminNotState);
         $stateProvider.state(adminAppState);
+        $stateProvider.state(healthContrState);
+        $stateProvider.state(laborFundContrState);
+        $stateProvider.state(socialContrState);
     }
 ])
 .run(
