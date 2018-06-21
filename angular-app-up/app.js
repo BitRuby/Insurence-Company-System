@@ -171,6 +171,24 @@ angular
                     controller: 'socialContrController as soc'
                 }
             }
+        }
+        var companyState = {
+            name: 'company',
+            url: '/company',
+            views: {
+                nav: {
+                    templateUrl: 'components/navigation/navigation.tpl.html',
+                    controller: 'navigationController as nav'
+                },
+                menu: {
+                    templateUrl: 'components/menu/menu.tpl.html',
+                    controller: 'menuController as menu'
+                },
+                content: {
+                    templateUrl: 'components/company/company.tpl.html',
+                    controller: 'companyController as cmp'
+                }
+            }
         }  
         var defaultState = {
             name: 'default',
@@ -189,6 +207,7 @@ angular
         $stateProvider.state(healthContrState);
         $stateProvider.state(laborFundContrState);
         $stateProvider.state(socialContrState);
+        $stateProvider.state(companyState);
     }
 ])
 .run(
