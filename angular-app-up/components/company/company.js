@@ -12,7 +12,7 @@
         $scope.isSet = function(tabNum){
           return $scope.tab === tabNum;
         }
-        if (AuthService.user.currentCompany){
+        if (AuthService.user.ownCompany){
             self.companyTabs = true;
             self.companyName = AuthService.user.currentCompany.companyName;
             self.companyAddressCity = AuthService.user.currentCompany.address.city;
@@ -23,6 +23,9 @@
             self.companyTID = AuthService.user.currentCompany.nip;
             self.companyBRN = AuthService.user.currentCompany.regon;
             self.companyID = AuthService.user.currentCompany.companyID;
+        }
+        else{
+            self.noCompanyInfo = true;
         }
     }
 
