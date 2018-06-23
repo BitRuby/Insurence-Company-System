@@ -3,7 +3,7 @@
     angular.module('App')
     .controller('companyController', companyController);
 
-    function companyController($scope, AuthService){
+    function companyController($scope, AuthService, RestServices){
         var self = this;
         $scope.tab = 1;
         $scope.setTab = function(newTab){
@@ -13,6 +13,7 @@
           return $scope.tab === tabNum;
         }
         if (AuthService.user.ownCompany){
+            console.log(AuthService.user);
             self.companyTabs = true;
             self.companyName = AuthService.user.currentCompany.companyName;
             self.companyAddressCity = AuthService.user.currentCompany.address.city;
@@ -27,6 +28,10 @@
         else{
             self.noCompanyInfo = true;
         }
+        RestServices.getAllCompanies().then(function(){
+            console.log(RestServices.data());
+        
+        });
     }
 
 })();

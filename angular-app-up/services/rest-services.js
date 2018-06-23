@@ -39,6 +39,10 @@ function RestServices(AuthService, $http, $q){
             REST_SERVICE_URI = 'http://localhost:8090/users';
             return this.resolve();
         },
+        getAllCompanies: function(){
+            REST_SERVICE_URI = 'http://localhost:8090/getAllCompanies';
+            return this.resolve();
+        },
         sendMessageToAll: function(obj){
             REST_SERVICE_URI = 'http://localhost:8090/messageToAll';
             return this.resolveWithPost(obj);
