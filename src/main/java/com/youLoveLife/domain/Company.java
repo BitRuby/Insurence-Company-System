@@ -19,11 +19,11 @@ public class Company {
     private String nip;
     private String regon;
     @OneToMany(mappedBy = "currentCompany", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties(value = {"currentCompany", "ownCompany"})
+    @JsonIgnoreProperties(value = {"currentCompany", "ownCompany", "hibernateLazyInitializer", "handler"})
     private List<AppUser> employees;
 
     //@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnoreProperties(value = {"currentCompany", "ownCompany"})
+    @JsonIgnoreProperties(value = {"currentCompany", "ownCompany", "hibernateLazyInitializer", "handler"})
     @OneToOne(fetch = FetchType.LAZY)
     private AppUser owner;
 

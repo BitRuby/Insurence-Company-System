@@ -87,7 +87,7 @@ public class AppUser implements UserDetails {
         else
             this.healthContribution.setInsured(true);
 
-        if(jobsList != null) {
+        if(!jobsList.isEmpty()) {
 			Job firstJob = jobsList.get(0);
 			Job lastJob = this.getLastJob();
 			Date startDate = null, toDate = null;
