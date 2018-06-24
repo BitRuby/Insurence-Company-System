@@ -13,15 +13,17 @@
                                 <li role="presentation" ng-class="{ active: isSet(1) }"><a href ng-click="setTab(1)">Summary</a></li>
                                 <li role="presentation" ng-class="{ active: isSet(2) }"><a href ng-click="setTab(2)">Applications</a></li>
                         </ul>
+                        <div style="padding: 10px 0"></div>
                         <div ng-show="isSet(1)">
                             <div ng-show="lab.active">
                                   <div class="row">
-                                      <div class="col-md-6">
-                                            
-                                      </div>
-                                      <div class="col-md-6">
+                                        <div class="col-xs-6">
+                                            <h4>Total amount: <span class="text-primary">$ {{lab.amount}}</span></h4>
+                                            <p>Insurence status: {{lab.info}}</p>
+                                            <p>Date from: {{lab.fromDate | date:"MM/dd/yyyy"}}</p>
+                                            <p>Date to: {{lab.toDate | date:"MM/dd/yyyy"}}</p>
+                                        </div>
 
-                                      </div>
                                   </div>  
                             </div> 
                         </div>  
