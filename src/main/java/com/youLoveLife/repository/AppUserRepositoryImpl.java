@@ -65,6 +65,7 @@ public class AppUserRepositoryImpl {
         Date jobTo = CreatingUserTools.setDate(2030,6,6);
 
         Job job = new Job("Szef firmy w " + company1.getCompanyName(), jobFrom, jobTo, Double.valueOf(16000));
+        job.setAppUser(company1Owner);
         jobList3.add(job);
 
         company1Owner.setJobsList(jobList3);
@@ -130,6 +131,7 @@ public class AppUserRepositoryImpl {
 
         user1.updateData();
         user2.updateData();
+        company1Owner.updateData();
         company1Owner.updateData();
 
 
