@@ -46,6 +46,26 @@
                                         </div>
                                     </div>
                                     <div ng-show="isSet(2)">
+                                            <div class="row">
+                                                    <div class="col-md-12 col-xs-12">
+                                                        <table class="table table-striped">
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>Firstname</th>
+                                                                <th>Lastname</th> 
+                                                                <th>Username</th> 
+                                                                <th>Actions</th> 
+                                                            </tr>
+                                                            <tr ng-repeat="row in cmp.employees">
+                                                                <td>{{row.id}}</td>
+                                                                <td>{{row.name}}</td>
+                                                                <td>{{row.surname}}</td>
+                                                                <td>{{row.username}}</td>
+                                                                <td><a href="" data-toggle="modal" ng-click="cmp.setEmployer()" data-target="#showEmployerInfo">Details</a></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
                                     </div>
                                     <div ng-show="isSet(3)">
                                     </div>
@@ -53,5 +73,35 @@
                             </div>
                         </div>
                     </div>
+            </div>
+        </div>
+
+        
+     <!-- Employer info -->
+     <div class="modal fade" id="showEmployerInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Send message to all</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                                <div class="form-group">
+                                        <label for="inputUser">Subject</label>
+                                        <input type="text" ng-model="admn.subjectAllInput" class="form-control" id="inputUser">
+                                </div>
+                                <div class="form-group">
+                                        <label for="inputUser">Message</label>
+                                        <textarea class="form-control" ng-model="admn.messageAllInput" rows="20"></textarea>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="admn.submitAll()">Send</button>
+                </div>
+            </div>
             </div>
         </div>
