@@ -61,7 +61,9 @@
                                                                 <td>{{row.name}}</td>
                                                                 <td>{{row.surname}}</td>
                                                                 <td>{{row.username}}</td>
-                                                                <td><a href="" data-toggle="modal" ng-click="cmp.setEmployer()" data-target="#showEmployerInfo">Details</a></td>
+                                                                <td>
+                                                                    <a href="" data-toggle="modal" ng-click="cmp.setEmployer(row.id)" data-target="#showEmployerInfo">Details</a>
+                                                                </td>
                                                             </tr>
                                                         </table>
                                                     </div>
@@ -83,21 +85,113 @@
             <div class="modal-content">
                 <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Send message to all</h4>
+                <h4 class="modal-title" id="myModalLabel">{{cmp.eName}} {{cmp.eSurname}} personal data</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12">
-                                <div class="form-group">
-                                        <label for="inputUser">Subject</label>
-                                        <input type="text" ng-model="admn.subjectAllInput" class="form-control" id="inputUser">
-                                </div>
-                                <div class="form-group">
-                                        <label for="inputUser">Message</label>
-                                        <textarea class="form-control" ng-model="admn.messageAllInput" rows="20"></textarea>
-                                </div>
+                        <div class="col-md-6">
+                              <strong>Name</strong>
+                              <p>{{cmp.eName}}</p>
+                              <strong>Surname</strong>
+                              <p>{{cmp.eSurname}}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Date of birth</strong>
+                            <p>{{cmp.eDateOfBirth | date:"MM/dd/yyyy"}}</p>
                         </div>
                     </div>
+                    <hr class="hr-cart">
+                    <h4>Address</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                                <strong>Street</strong>
+                                <p>{{cmp.eaStreet}}</p>
+                                <strong>Building</strong>
+                                <p>{{cmp.eaBuild}}</p>
+                                <strong>City</strong>
+                                <p>{{cmp.eaCity}}</p>
+                        </div>
+                        <div class="col-md-6">
+                                <strong>Post Code:</strong>
+                                <p>{{cmp.eaPost}}</p>
+                                <strong>Country</strong>
+                                <p>{{emp.eaCountry}}</p>
+                        </div>
+                    </div>
+                    <hr class="hr-cart">
+                    <h4>Health Contribution</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                                <strong>Status</strong>
+                                <p>{{cmp.hc}}</p>
+                                <strong>Amount</strong>
+                                <p>{{cmp.hcAmount}}</p>
+                        </div>
+                        <div class="col-md-6">
+                                <strong>From date</strong>
+                                <p>{{cmp.hcFromDate | date:"MM/dd/yyyy"}}</p>
+                                <strong>To Date</strong>
+                                <p>{{cmp.hcToDate | date:"MM/dd/yyyy"}}</p>
+                        </div>
+                    </div>
+                    <hr class="hr-cart">
+                    <h4>Labor fund Contribution</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                                <strong>Status</strong>
+                                <p>{{cmp.lf}}</p>
+                                <strong>Amount</strong>
+                                <p>{{cmp.lfAmount}}</p>
+                        </div>
+                        <div class="col-md-6">
+                                <strong>From date</strong>
+                                <p>{{cmp.lfFromDate | date:"MM/dd/yyyy"}}</p>
+                                <strong>To Date</strong>
+                                <p>{{cmp.lfToDate | date:"MM/dd/yyyy"}}</p>
+                        </div>
+                    </div>
+                    <hr class="hr-cart">
+                    <h4>Social contribution</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                                <strong>Status</strong>
+                                <p>{{cmp.sc}}</p>
+                                <strong>Amount</strong>
+                                <p>{{cmp.scAmount}}</p>
+                        </div>
+                        <div class="col-md-6">
+                                <strong>From date</strong>
+                                <p>{{cmp.lfFromDate | date:"MM/dd/yyyy"}}</p>
+                        </div>
+                    </div>
+                    <h4>Pension</h4>
+                    <div class="row">
+                            <div class="col-md-6">
+                                    <strong>Status</strong>
+                                    <p>{{cmp.scp}}</p>
+                                    <strong>Amount</strong>
+                                    <p>{{cmp.scpAmount}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                    <strong>From date</strong>
+                                    <p>{{cmp.scpFromDate | date:"MM/dd/yyyy"}}</p>
+                            </div>
+                        </div>
+                        <h4>Rent</h4>
+                        <div class="row">
+                                <div class="col-md-6">
+                                        <strong>Status</strong>
+                                        <p>{{cmp.scr}}</p>
+                                        <strong>Amount</strong>
+                                        <p>{{cmp.scrAmount}}</p>
+                                </div>
+                                <div class="col-md-6">
+                                        <strong>From date</strong>
+                                        <p>{{cmp.scrFromDate | date:"MM/dd/yyyy"}}</p>
+                                        <strong>From date</strong>
+                                        <p>{{cmp.scrToDate | date:"MM/dd/yyyy"}}</p>
+                                </div>
+                            </div>
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="admn.submitAll()">Send</button>
