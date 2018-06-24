@@ -86,10 +86,10 @@
                                                 <h4>Please select type of application</h4>
                                                 <form action="" class="form-inline">
                                                     <div class="form-group">
-                                                        <select class="form-control">
+                                                        <select class="form-control" ng-model="cmp.selectedType">
                                                             <option value="NEW_COMPANY">Register new company</option>
                                                         </select>
-                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showAppSummary">Submit</button>
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" ng-click="cmp.showAppSummary()" data-target="#showAppSummary">Submit</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -226,10 +226,44 @@
                 <h4 class="modal-title" id="myModalLabel">New application summary</h4>
                 </div>
                 <div class="modal-body">
-                   
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <strong>Type</strong>
+                            <p>{{cmp.aType}}</p>
+                        </div>
+                        <div class="col-xs-6">
+                        </div>
+                    </div>
+                    <h3>Applicant data</h3>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <strong>Name</strong>
+                            <p>{{cmp.aName}}</p>
+                            <strong>Surname</strong>
+                            <p>{{cmp.aSurname}}</p>
+                            <strong>Id</strong>
+                            <p>{{cmp.aId}}</p>
+                        </div>
+                        <div class="col-xs-6">
+                            <strong>Street</strong>
+                            <p>{{cmp.aStreet}}</p>
+                            <strong>Building</strong>
+                            <p>{{cmp.aBuilding}}</p>
+                            <strong>City</strong>
+                            <p>{{cmp.aCity}}</p>
+                            <strong>Zip/Postal Code</strong>
+                            <p>{{cmp.aPostal}}</p>
+                        </div>
+                    </div>
+                    <div style="padding: 10px 0;"></div>
+                    <div class="row" style="position:absolute;bottom:0">
+                        <div class="col-xs-12">
+                            <h2 class="text-success">Fee: $0.01</h2>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+                <div id="paypal-button-container"></div>
                 </div>
             </div>
             </div>

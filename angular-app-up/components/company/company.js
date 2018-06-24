@@ -98,6 +98,60 @@
                 }
             });
         }
+        self.showAppSummary = function(){
+            self.aName = AuthService.user.name;
+            self.aSurname = AuthService.user.surname;
+            self.aId = AuthService.user.id;
+            self.aStreet = AuthService.user.address.street;
+            self.aBuilding = AuthService.user.address.building;
+            self.aPostal = AuthService.user.address.postcode;
+            self.aCity = AuthService.user.address.city;
+            self.aType = self.selectedType;
+        }
+        paypal.Button.render({
+            env: 'sandbox', // sandbox | production
+            style: {
+                label: 'paypal',
+                size:  'medium',    // small | medium | large | responsive
+                shape: 'rect',     // pill | rect
+                color: 'blue',     // gold | blue | silver | black
+                tagline: false    
+            },
+            client: {
+                sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+                production: '<insert production client id>'
+            },
+            payment: function(data, actions) {
+                return actions.payment.create({
+                    payment: {
+                        transactions: [
+                            {
+                                amount: { total: '0.01', currency: 'USD' }
+                            }
+                        ]
+                    }
+                });
+            },
+            onAuthorize: function(data, actions) {
+                return actions.payment.execute().then(function() {
+                    var objectApp = {
+                        name: AuthService.user.name,
+                        surname: AuthService.user.surname,
+                        city: AuthService.user.address.city,
+                        building: AuthService.user.address.building,
+                        street: AuthService.user.address.street,
+                        postcode: AuthService.user.address.postcode,
+                        country: AuthService.user.address.country,
+                        userID: AuthService.user.id,
+                        type: self.selectedType,
+                    }
+                    RestServices.sendApplication(objectApp).then(function(){
+                        console.log("Send TRUE");
+                    });
+                });
+            }
+        }, '#paypal-button-container');
+
     }
 
 })();
