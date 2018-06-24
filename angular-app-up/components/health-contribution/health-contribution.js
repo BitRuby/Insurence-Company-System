@@ -16,7 +16,12 @@
             console.log(RestServices.data());
             if (RestServices.data()){
                 self.active = true;
-                self.insIden = RestServices.data().id;
+                if (RestServices.data().insured){
+                    self.info = "Insured (Insurence ID# "+RestServices.data().id+")";
+                }
+                else {
+                    self.info = "Not insured";
+                }
                 self.date = RestServices.data().fromDate;
                 self.amount  = RestServices.data().amount;         
         }

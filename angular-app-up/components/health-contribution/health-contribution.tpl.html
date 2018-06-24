@@ -18,9 +18,9 @@
                             <div ng-show="hea.active">
                                   <div class="row">
                                       <div class="col-md-6">
-                                            <h4>Total amount: <span class="text-primary">${{hea.amount}}</span></h4>
-                                            <p>Date: {{hea.date | date:"MM/dd/yyyy HH:MM"}}</p>
-                                            <p>Insurence status: Insured ( Insurence ID# {{hea.insIden}} )</p>
+                                            <h4>Total amount: <span class="text-primary">$ {{hea.amount}}</span></h4>
+                                            <p>Date: {{hea.date | date:"MM/dd/yyyy"}}</p>
+                                            <p>Insurence status: {{hea.info}}</p>
                                       </div>
                                       <div class="col-md-6">
 
