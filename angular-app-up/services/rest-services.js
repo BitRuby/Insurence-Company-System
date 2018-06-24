@@ -43,12 +43,20 @@ function RestServices(AuthService, $http, $q){
             REST_SERVICE_URI = 'http://localhost:8090/getAllCompanies';
             return this.resolve();
         },
+        getAllApplications: function(){
+            REST_SERVICE_URI = 'http://localhost:8090/getAllApplication';
+            return this.resolve();
+        },
         sendMessageToAll: function(obj){
             REST_SERVICE_URI = 'http://localhost:8090/messageToAll';
             return this.resolveWithPost(obj);
         },
         sendMessageToUser: function(obj){
             REST_SERVICE_URI = 'http://localhost:8090/messageToUser';
+            return this.resolveWithPost(obj);
+        },
+        sendApplication: function(obj){
+            REST_SERVICE_URI = 'http://localhost:8090/sendApplication';
             return this.resolveWithPost(obj);
         },
         resolve: function(){

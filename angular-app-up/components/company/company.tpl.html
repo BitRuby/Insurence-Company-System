@@ -81,6 +81,19 @@
                                                 </div>
                                     </div>
                                     <div ng-show="isSet(3)">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h4>Please select type of application</h4>
+                                                <form action="" class="form-inline">
+                                                    <div class="form-group">
+                                                        <select class="form-control">
+                                                            <option value="NEW_COMPANY">Register new company</option>
+                                                        </select>
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showAppSummary">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -198,6 +211,25 @@
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+           
+     <!-- Application Summary -->
+     <div class="modal fade" id="showAppSummary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">New application summary</h4>
+                </div>
+                <div class="modal-body">
+                   
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
                 </div>
             </div>
             </div>
