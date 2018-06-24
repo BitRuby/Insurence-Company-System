@@ -34,6 +34,17 @@
                     self.employees = RestServices.data()[i].employees; 
             }
         });
+        self.userVal = function(){
+            if(self.userInput.length>1){
+                RestServices.findUser(self.userInput).then(function(){
+                    self.userList = RestServices.data();
+                });
+            }else{
+                RestServices.showAllUsers().then(function(){
+                    self.userList = RestServices.data();
+                });
+            }
+        }
         self.setEmployer = function(iden){
             id = iden;
             RestServices.findUserById(id).then(function(){
@@ -45,29 +56,42 @@
                 self.eaBuild = RestServices.data().address.building;
                 self.eaStreet = RestServices.data().address.street;
                 self.eaPost = RestServices.data().address.postcode;
-                self.eaCountry = RestServices.data().address.country;
                 if(RestServices.data().laborFundContribution){
-                    self.lf = RestServices.data().laborFundContribution.active;
+                
+                    if(RestServices.data().laborFundContribution.active)
+                    self.lf = "Active";
+                    else
+                    self.lf = "Not active";
                     self.lfAmount = RestServices.data().laborFundContribution.amount;
                     self.lfFromDate = RestServices.data().laborFundContribution.fromDate;
                     self.lfToDate = RestServices.data().laborFundContribution.toDate;
                 }
                 if(RestServices.data().healthContribution){
-                    self.hc = RestServices.data().healthContribution.insured;
+                    if(RestServices.data().healthContribution.insured)
+                    self.hc = "Active";
+                    else
+                    self.hc = "Not active";
                     self.hcAmount = RestServices.data().healthContribution.amount;
                     self.hcFromDate = RestServices.data().healthContribution.fromDate;
                     self.hcToDate = RestServices.data().healthContribution.toDate;
                 }
                 if(RestServices.data().socialContribution){
-                    self.sc = true;
+                    self.sc = "Active";
                     self.scAmount = RestServices.data().socialContribution.amount;
                     self.scFromDate = RestServices.data().socialContribution.fromDate;
 
-                    self.scp = RestServices.data().socialContribution.pension.granted;
+                    
+                    if(RestServices.data().socialContribution.pension.granted)
+                        self.scp = "Granted";
+                    else
+                        self.scp = "Not granted";
                     self.scpAmount = RestServices.data().socialContribution.pension.amount;
                     self.scpFromDate = RestServices.data().socialContribution.pension.fromDate;
 
-                    self.scr = RestServices.data().socialContribution.rent.paid;
+                    if (RestServices.data().socialContribution.rent.paid)
+                        self.scr = "Paid";
+                    else
+                        self.scr = "Not paid";
                     self.scrAmount = RestServices.data().socialContribution.rent.amount;
                     self.scrFromDate = RestServices.data().socialContribution.rent.fromDate;
                     self.scrToDate = RestServices.data().socialContribution.rent.toDate;

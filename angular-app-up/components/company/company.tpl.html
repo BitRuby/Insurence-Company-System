@@ -47,6 +47,17 @@
                                     </div>
                                     <div ng-show="isSet(2)">
                                             <div class="row">
+                                                    <div class="col-md-12">
+                                                            <form class="form-inline">
+                                                                    <div class="form-group">
+                                                                        <label for="inputUser" >Find employer</label>
+                                                                        <input type="text" class="form-control" id="inputUser" ng-model="cmp.userInput" ng-change="admn.userVal()" placeholder="Enter keyword">
+                                                                    </div>
+                                                            </form>
+                                                    </div>
+                                                </div>
+                                                <div style="padding: 10px 0;" ></div>
+                                            <div class="row">
                                                     <div class="col-md-12 col-xs-12">
                                                         <table class="table table-striped">
                                                             <tr>
@@ -89,45 +100,35 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                               <strong>Name</strong>
                               <p>{{cmp.eName}}</p>
                               <strong>Surname</strong>
                               <p>{{cmp.eSurname}}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <strong>Date of birth</strong>
+                              <strong>Date of birth</strong>
                             <p>{{cmp.eDateOfBirth | date:"MM/dd/yyyy"}}</p>
                         </div>
-                    </div>
-                    <hr class="hr-cart">
-                    <h4>Address</h4>
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                                 <strong>Street</strong>
                                 <p>{{cmp.eaStreet}}</p>
                                 <strong>Building</strong>
                                 <p>{{cmp.eaBuild}}</p>
                                 <strong>City</strong>
-                                <p>{{cmp.eaCity}}</p>
-                        </div>
-                        <div class="col-md-6">
-                                <strong>Post Code:</strong>
-                                <p>{{cmp.eaPost}}</p>
-                                <strong>Country</strong>
-                                <p>{{emp.eaCountry}}</p>
+                                <p>{{cmp.eaCity}}</p>   
+                                <strong>Zip/Postal code</strong>
+                                <p>{{cmp.eaPost}}</p>   
                         </div>
                     </div>
                     <hr class="hr-cart">
                     <h4>Health Contribution</h4>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                                 <strong>Status</strong>
                                 <p>{{cmp.hc}}</p>
                                 <strong>Amount</strong>
                                 <p>{{cmp.hcAmount}}</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                                 <strong>From date</strong>
                                 <p>{{cmp.hcFromDate | date:"MM/dd/yyyy"}}</p>
                                 <strong>To Date</strong>
@@ -137,13 +138,13 @@
                     <hr class="hr-cart">
                     <h4>Labor fund Contribution</h4>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                                 <strong>Status</strong>
                                 <p>{{cmp.lf}}</p>
                                 <strong>Amount</strong>
                                 <p>{{cmp.lfAmount}}</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                                 <strong>From date</strong>
                                 <p>{{cmp.lfFromDate | date:"MM/dd/yyyy"}}</p>
                                 <strong>To Date</strong>
@@ -153,39 +154,41 @@
                     <hr class="hr-cart">
                     <h4>Social contribution</h4>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                                 <strong>Status</strong>
                                 <p>{{cmp.sc}}</p>
                                 <strong>Amount</strong>
                                 <p>{{cmp.scAmount}}</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                                 <strong>From date</strong>
                                 <p>{{cmp.lfFromDate | date:"MM/dd/yyyy"}}</p>
                         </div>
                     </div>
+                    <hr class="hr-cart">
                     <h4>Pension</h4>
                     <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-xs-6">
                                     <strong>Status</strong>
                                     <p>{{cmp.scp}}</p>
                                     <strong>Amount</strong>
                                     <p>{{cmp.scpAmount}}</p>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-xs-6">
                                     <strong>From date</strong>
                                     <p>{{cmp.scpFromDate | date:"MM/dd/yyyy"}}</p>
                             </div>
                         </div>
+                        <hr class="hr-cart">
                         <h4>Rent</h4>
                         <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-xs-6">
                                         <strong>Status</strong>
                                         <p>{{cmp.scr}}</p>
                                         <strong>Amount</strong>
                                         <p>{{cmp.scrAmount}}</p>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-xs-6">
                                         <strong>From date</strong>
                                         <p>{{cmp.scrFromDate | date:"MM/dd/yyyy"}}</p>
                                         <strong>From date</strong>
@@ -194,7 +197,7 @@
                             </div>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="admn.submitAll()">Send</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                 </div>
             </div>
             </div>
