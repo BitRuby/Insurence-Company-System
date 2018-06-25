@@ -1,0 +1,103 @@
+
+        <div id="main-content">
+            <ol class="breadcrumb">
+                    <li><a href="/#!/dashboard">Dashboard</a></li>
+                    <li class="active">Applications</li>
+            </ol>
+            <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h3>Applications</h3>
+                                <hr class="hr-cart">
+                                <div ng-show="app.appSuccess" class="alert alert-success" style="margin:0;" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <i class="fas fa-exclamation-triangle" style="font-size:1.2em"></i>
+                                    Application send successfully!
+                                </div>
+                                <div ng-show="app.applicationWrongCompany" class="alert alert-info" style="margin:0;" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <i class="fas fa-exclamation-triangle" style="font-size:1.2em"></i>
+                                    You don't have any company!
+                                </div>
+                                <div ng-show="app.applicationAlreadyCompany" class="alert alert-info" style="margin:0;" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <i class="fas fa-exclamation-triangle" style="font-size:1.2em"></i>
+                                    You already have company!
+                                </div>
+                                <div ng-show="app.applicationWrongRent" class="alert alert-info" style="margin:0;" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <i class="fas fa-exclamation-triangle" style="font-size:1.2em"></i>
+                                    You already have rent contribution!
+                                </div>
+                                <div style="padding: 10px 0;" ></div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4>Please select type of application</h4>
+                                        <form action="" class="form-inline">
+                                            <div class="form-group">
+                                                <select class="form-control" ng-model="app.selectedType">
+                                                    <option value="NEW_COMPANY">Register new company</option>
+                                                    <option value="UNREGISTER_COMPANY">Unregister company</option>
+                                                    <option value="RENT">Rent application</option>
+                                                </select>
+                                                <button type="button" class="btn btn-primary" ng-click="app.showAppSummary()" data-target="#showAppSummary">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+
+           
+     <!-- Application Summary -->
+     <div class="modal fade" id="showAppSummary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">New application summary</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <strong>Type</strong>
+                            <p>{{app.aType}}</p>
+                        </div>
+                        <div class="col-xs-6">
+                        </div>
+                    </div>
+                    <h3>Applicant data</h3>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <strong>Name</strong>
+                            <p>{{app.aName}}</p>
+                            <strong>Surname</strong>
+                            <p>{{app.aSurname}}</p>
+                            <strong>Id</strong>
+                            <p>{{app.aId}}</p>
+                        </div>
+                        <div class="col-xs-6">
+                            <strong>Street</strong>
+                            <p>{{app.aStreet}}</p>
+                            <strong>Building</strong>
+                            <p>{{app.aBuilding}}</p>
+                            <strong>City</strong>
+                            <p>{{app.aCity}}</p>
+                            <strong>Zip/Postal Code</strong>
+                            <p>{{app.aPostal}}</p>
+                        </div>
+                    </div>
+                    <div style="padding: 10px 0;"></div>
+                    <div class="row" style="position:absolute;bottom:0">
+                        <div class="col-xs-12">
+                            <h2 class="text-success">Fee: $0.01</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <div id="paypal-button-container"></div>
+                </div>
+            </div>
+            </div>
+        </div>

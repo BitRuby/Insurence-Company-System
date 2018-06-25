@@ -212,7 +212,7 @@ a{
     background-image: url(../images/icover.jpg);
     background-color: #535c68;
     height: calc(100% - 100px);
-    background-position: center center;
+    background-position: right top;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
