@@ -1,16 +1,14 @@
 package com.youLoveLife.web;
 
 import com.youLoveLife.domain.applications.Application;
+import com.youLoveLife.enums.ApplicationType;
 import com.youLoveLife.repository.ApplicationRepositoryImpl;
 import com.youLoveLife.repository.MessageRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,10 +21,17 @@ public class ApplicationRestController {
     private MessageRepositoryImpl messageRepository;
 
 
-    @RequestMapping(value = "/sendApplication/", method = RequestMethod.POST)
-    public ResponseEntity sendApplication(@RequestBody Application application) {
+    @RequestMapping(value = "/sendApplication", method = RequestMethod.POST)
+    public ResponseEntity sendApplication(@RequestParam String building, @RequestParam String city, @RequestParam String country,
+                                          @RequestParam String name, @RequestParam String postcode, @RequestParam String street,
+                                          @RequestParam String surname, @RequestParam ApplicationType type, @RequestParam Integer userID) {
+
+        //ApplicationType type, String name, String surname, String city, String building, String street, String postcode, String country, boolean isApproved, Long userID
+        Application application = new Application(type, name, surname, city, building, street, postcode, country, false, Long.valueOf(userID));
+
         try {
             applicationRepository.sendApplication(application);
+            System.out.println("\n\n\n*************************************\n DODAWANIE");
             return new ResponseEntity(HttpStatus.OK);
         }
         catch(Exception e){
@@ -48,8 +53,8 @@ public class ApplicationRestController {
     @RequestMapping(value = "/confirmApplication/{applicationID}", method = RequestMethod.GET)
     public ResponseEntity confirmApplication(@PathVariable Integer applicationID) {
         try {
-            Application rentApplication = applicationRepository.confirmApplication(applicationID);
-            messageRepository.sendConfirmation(rentApplication);
+            Application application = applicationRepository.confirmApplication(applicationID);
+            messageRepository.sendConfirmation(application);
             return new ResponseEntity(HttpStatus.OK);
         }
         catch(Exception e){

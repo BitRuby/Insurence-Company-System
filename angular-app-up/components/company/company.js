@@ -143,10 +143,13 @@
                         postcode: AuthService.user.address.postcode,
                         country: AuthService.user.address.country,
                         userID: AuthService.user.id,
-                        type: self.selectedType,
+                        type: self.selectedType
                     }
+                    console.log(objectApp);
                     RestServices.sendApplication(objectApp).then(function(){
-                        console.log("Send TRUE");
+                        self.applicationSendInfo = true;
+                        $('#showAppSummary').modal('hide');
+                    
                     });
                 });
             }
