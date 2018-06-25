@@ -83,11 +83,10 @@
                         userID: AuthService.user.id,
                         type: self.selectedType
                     }
-                    console.log(objectApp);
                     RestServices.sendApplication(objectApp).then(function(){
                         self.applicationSendInfo = true;
                         $('#showAppSummary').modal('hide');
-                    
+                        self.appSuccess = true;
                     });
                 });
             }
