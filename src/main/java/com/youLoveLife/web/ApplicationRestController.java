@@ -26,7 +26,7 @@ public class ApplicationRestController {
                                           @RequestParam String name, @RequestParam String postcode, @RequestParam String street,
                                           @RequestParam String surname, @RequestParam ApplicationType type, @RequestParam Integer userID) {
 
-        //ApplicationType type, String name, String surname, String city, String building, String street, String postcode, String country, boolean isApproved, Long userID
+        //ApplicationType type, String name,  String surname, String city, String building, String street, String postcode, String country, boolean isApproved, Long userID
         Application application = new Application(type, name, surname, city, building, street, postcode, country, false, Long.valueOf(userID));
 
         try {

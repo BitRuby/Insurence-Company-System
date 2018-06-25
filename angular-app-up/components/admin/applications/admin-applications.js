@@ -6,9 +6,16 @@
     function adminApplicationsController(AuthService, RestServices){
         var self = this;
         RestServices.getAllApplications().then(function(){
-            console.log(RestServices.data());
             self.applicants = RestServices.data();
         });
+        self.accept = function(id){
+            RestServices.confirmApplication(id).then(function(){
+                self.confirmAccepted = true;
+            });
+        }
+        self.details = function(id){
+
+        }
     }
 
 })();

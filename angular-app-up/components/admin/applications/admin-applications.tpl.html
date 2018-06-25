@@ -10,6 +10,10 @@
                     <div class="panel-body">
                         <h3>Applications list</h3>
                         <hr class="hr-cart">
+                        <div ng-show="app.confirmAccepted" class="alert alert-success" style="margin:0;" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <i class="fas fa-exclamation-triangle" style="font-size:1.2em;color:#3c763d;"></i>
+                            Application has been accepted!
+                        </div>
                                 <div class="row">
                                         <div class="col-md-12">
                                                 <form class="form-inline">
@@ -39,9 +43,9 @@
                                                     <td>{{row.name}}</td>
                                                     <td>{{row.surname}}</td>
                                                     <td>
-                                                        <a href="" data-toggle="modal" ng-click="admn.setEmployer(row.id)" data-target="#showEmployerInfo">Details</a>
+                                                        <a href="" data-toggle="modal" ng-click="admn.details(row.applicationID)" data-target="#showEmployerInfo">Details</a>
                                                         <br/>
-                                                        <a href="" data-toggle="modal" ng-click="admn.setEmployer(row.id)" data-target="#acceptConfirmation">Accept</a>
+                                                        <a href="" data-toggle="modal" ng-click="admn.accept(row.applicationID)" data-target="#acceptConfirmation">Accept</a>
                                                     </td>
                                                 </tr>
                                             </table>

@@ -59,6 +59,10 @@ function RestServices(AuthService, $http, $q){
             REST_SERVICE_URI = 'http://localhost:8090/sendApplication';
             return this.resolveWithPost(obj);
         },
+        confirmApplication: function(keyword){
+            REST_SERVICE_URI = 'http://localhost:8090/confirmApplication/'+keyword;
+            return this.resolve();
+        },
         resolve: function(){
             var deffered = $q.defer();
             $http({
