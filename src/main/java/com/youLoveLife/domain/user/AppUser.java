@@ -79,6 +79,13 @@ public class AppUser implements UserDetails {
         this.jobsList = new ArrayList<>();
     }
 
+
+    public void updateContribution() {
+		this.socialContribution = new SocialContribution(this);
+		this.healthContribution = new HealthContribution(this);
+		this.laborFundContribution = new LaborFundContribution(this);
+	}
+
     public void updateData() {
         HealthContributionCalculator healthContributionCalculator = new HealthContributionCalculator(getLastJob());
 		this.healthContribution.setAmount(healthContributionCalculator.calculateContribution());

@@ -5,6 +5,7 @@ import com.youLoveLife.domain.Contribution.Job;
 import com.youLoveLife.domain.user.Address;
 import com.youLoveLife.domain.user.AppUser;
 import com.youLoveLife.domain.user.CreatingUserTools;
+import oracle.net.aso.q;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
@@ -20,9 +21,29 @@ public class AppUserRepositoryImpl {
     @PersistenceContext
     private EntityManager em;
 
+    @Autowired
+    @Lazy
+    private CompanyRepositoryImpl companyRepository;
+
     public List<AppUser> getUsersList() {
         String query = "from AppUser user";
         return em.createQuery(query, AppUser.class).getResultList();
+    }
+
+    public List<Long> getUsersId() {
+        String query = "select u.id from AppUser u";
+        return em.createQuery(query, Long.class).getResultList();
+    }
+
+    public int contUsers() {
+        String query = "select count(*) from AppUser";
+        return (int) em.createQuery(query).getSingleResult();
+    }
+
+    public AppUser getUserByID(Integer id) {
+        return em.createQuery("SELECT u FROM AppUser u WHERE u.id LIKE :id", AppUser.class)
+                .setParameter("id", Long.valueOf(id))
+                .getSingleResult();
     }
 
     private boolean isExistUser(AppUser user, List<AppUser> users) {
@@ -148,22 +169,43 @@ public class AppUserRepositoryImpl {
     }
 
     @Transactional
+    public void updateContributions() {
+        List<AppUser> list = getUsersList();
+        Iterator<AppUser> iterator = list.iterator();
+
+        List<Company> companies = companyRepository.getCompanyList();
+        Iterator<Company> companyIterator = companies.iterator();
+
+        while (iterator.hasNext()) {
+            AppUser user = iterator.next();
+            user.updateContribution();
+            user.updateData();
+            if(user.getId()<=100) {
+                Company company = companies.get(user.getId().intValue());
+                user.setOwnCompany(company);
+            }
+        }
+    }
+
+    @Transactional
     public AppUser updateUser(Integer userID) {
-        List<AppUser> users = this.getUsersList();
-        Iterator<AppUser> iterator = users.iterator();
-        AppUser tmp = null;
+        List<Long> usersID = this.getUsersId();
+        Iterator<Long> iterator = usersID.iterator();
+        Long tmp = null;
+        AppUser user = null;
 
         while (iterator.hasNext()) {
              tmp = iterator.next();
 
-            if(tmp.getId().equals(Long.valueOf(userID))) {
-                tmp.updateData();
-                em.merge(tmp);
+            if(tmp.equals(Long.valueOf(userID))) {
+                user = getUserByID(tmp.intValue());
+                user.updateData();
+                em.merge(user);
                 break;
             }
         }
 
-        return tmp;
+        return user;
     }
 
     public AppUser setUserOwnCopany(Company company) {

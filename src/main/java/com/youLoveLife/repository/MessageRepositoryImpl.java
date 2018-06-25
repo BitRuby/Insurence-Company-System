@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.List;
@@ -33,25 +34,25 @@ public class MessageRepositoryImpl {
 
     @Transactional
     public void sendEveryone(String topic, String message) {
-        List<AppUser> list = appUserRepository.getUsersList();
-        Iterator<AppUser> iterator = list.iterator();
+        List<Long> list = appUserRepository.getUsersId();
+        Iterator<Long> iterator = list.iterator();
 
         while (iterator.hasNext()) {
-            AppUser temp = iterator.next();
-            Message msg = new Message(temp.getId(), topic, message);
+            Long temp = iterator.next();
+            Message msg = new Message(temp, topic, message);
             em.persist(msg);
         }
     }
 
     @Transactional
     public void sendMessage(String topic, String message, Integer userID) {
-        List<AppUser> list = appUserRepository.getUsersList();
-        Iterator<AppUser> iterator = list.iterator();
+        List<Long> list = appUserRepository.getUsersId();
+        Iterator<Long> iterator = list.iterator();
 
         while (iterator.hasNext()) {
-            AppUser temp = iterator.next();
-            if(temp.getId().equals(Long.valueOf(userID))) {
-                Message msg = new Message(temp.getId(), topic, message);
+            Long temp = iterator.next();
+            if(temp.equals(userID)) {
+                Message msg = new Message(temp, topic, message);
                 em.persist(msg);
             }
         }
@@ -158,16 +159,19 @@ public class MessageRepositoryImpl {
 
     @Transactional
     public void sendTerminateContractMessage(Integer userID, Integer companyID) {
-        List<AppUser> list = appUserRepository.getUsersList();
-        Iterator<AppUser> iterator = list.iterator();
+        List<Long> list = appUserRepository.getUsersId();
+        Iterator<Long> iterator = list.iterator();
         AppUser appUser = null;
+        Long tmpID = null;
 
         while (iterator.hasNext()) {
-            appUser = iterator.next();
+            tmpID = iterator.next();
 
-            if(appUser.getId().equals(Long.valueOf(userID)))
+            if(tmpID.equals(userID))
                 break;
         }
+
+        appUser = appUserRepository.getUserByID(tmpID.intValue());
 
         Company company = companyRepository.getCompanyByID(companyID);
 
@@ -230,13 +234,14 @@ public class MessageRepositoryImpl {
                 " emeryturze. Dodatkowo możesz składać wnioski o rentę, założenie firmy, wyrejestrowanie firmy. Jeśli już jesteś przedsiębiorcą " +
                 "możesz zgłaszać pracowników lub ich wyrejestrowywać. Życzymy miłego korzystana z systemu.";
 
-        List<AppUser> users = appUserRepository.getUsersList();
-        Iterator<AppUser> iterator = users.iterator();
+        List<Long> users = appUserRepository.getUsersId();
+        Iterator<Long> iterator = users.iterator();
 
 
         while (iterator.hasNext()) {
-            AppUser user = iterator.next();
-            List<Message> messages = receiveMessages(user.getId().intValue());
+            Long tmpID = iterator.next();
+            //AppUser user = iterator.next();
+            List<Message> messages = receiveMessages(tmpID.intValue());
             Iterator<Message> messageIterator = messages.iterator();
             if(messageIterator.hasNext()) {
                 while (messageIterator.hasNext()) {
@@ -245,7 +250,7 @@ public class MessageRepositoryImpl {
                         break;
                 }
             } else
-                sendMessage(topic, message, user.getId().intValue());
+                sendMessage(topic, message, tmpID.intValue());
         }
     }
 }
