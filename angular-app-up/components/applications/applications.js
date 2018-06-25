@@ -21,6 +21,7 @@
             self.aPostal = AuthService.user.address.postcode;
             self.aCity = AuthService.user.address.city;
             self.aType = self.selectedType;
+            console.log(AuthService.user.socialContribution);
             if (self.selectedType=="NEW_COMPANY"){
                 if (!AuthService.user.ownCompany){
                     $('#showAppSummary').modal('show');
@@ -38,7 +39,7 @@
                 }
             }
             else{
-                if (!AuthService.user.socialContribution.rent){
+                if (!AuthService.user.socialContribution.rent.paid){
                     $('#showAppSummary').modal('show');
                 }
                 else{
