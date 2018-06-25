@@ -189,6 +189,24 @@ angular
                     controller: 'companyController as cmp'
                 }
             }
+        }
+        var applicationsState = {
+            name: 'applications',
+            url: '/applications',
+            views: {
+                nav: {
+                    templateUrl: 'components/navigation/navigation.tpl.html',
+                    controller: 'navigationController as nav'
+                },
+                menu: {
+                    templateUrl: 'components/menu/menu.tpl.html',
+                    controller: 'menuController as menu'
+                },
+                content: {
+                    templateUrl: 'components/applications/applications.tpl.html',
+                    controller: 'applicationsController as app'
+                }
+            }
         }  
         var defaultState = {
             name: 'default',
@@ -208,6 +226,7 @@ angular
         $stateProvider.state(laborFundContrState);
         $stateProvider.state(socialContrState);
         $stateProvider.state(companyState);
+        $stateProvider.state(applicationsState);
     }
 ])
 .run(
