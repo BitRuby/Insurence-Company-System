@@ -30,7 +30,7 @@ public class Starter implements CommandLineRunner {
     public void run(String... strings) throws Exception {
         repo.setFirstUsers();
         repository.sendWelcomeMessage();
-        //repo.updateContributions();
+        repo.updateContributions();
     }
 
     /* TODO

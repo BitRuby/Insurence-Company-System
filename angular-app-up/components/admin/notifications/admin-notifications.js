@@ -2,12 +2,14 @@
     'use strict';
     angular.module('App')
     .controller('adminNotificationsController', adminNotificationsController);
-
+    
     function adminNotificationsController(RestServices){
         var self = this;
         var id;
+        self.loading = true;
         RestServices.showAllUsers().then(function(){
             self.userList = RestServices.data();
+            self.loading = false;
         });
         self.userVal = function(){
             if(self.userInput.length>1){
