@@ -1,7 +1,9 @@
 package com.youLoveLife.web;
 
+import com.youLoveLife.domain.Company;
 import com.youLoveLife.domain.user.AppUser;
 import com.youLoveLife.repository.AppUserRepository;
+import com.youLoveLife.repository.CompanyRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class HomeRestController {
     @Autowired
     @Qualifier("appUserRepository")
      private AppUserRepository appUserRepository;
+
+    @Autowired
+    private CompanyRepository companyRepository;
 
     /**
      * This method is used for user registration. Note: user registration is not
@@ -75,6 +80,12 @@ public class HomeRestController {
             token = Jwts.builder().setSubject(username).claim("roles", appUser.getRoles()).setIssuedAt(new Date())
                     .signWith(SignatureAlgorithm.HS256, "secretkey").compact();
             tokenMap.put("token", token);
+
+            if(appUser.getId() <= 100) {
+                Company company = companyRepository.findOne(Long.valueOf(appUser.getId()));
+                appUser.setOwnCompany(company);
+            }
+
             tokenMap.put("user", appUser);;
             return new ResponseEntity<Map<String, Object>>(tokenMap, HttpStatus.OK);
         } else {

@@ -46,16 +46,16 @@ public class MessageRepositoryImpl {
 
     @Transactional
     public void sendMessage(String topic, String message, Integer userID) {
-        List<Long> list = appUserRepository.getUsersId();
-        Iterator<Long> iterator = list.iterator();
-
-        while (iterator.hasNext()) {
-            Long temp = iterator.next();
-            if(temp.equals(userID)) {
-                Message msg = new Message(temp, topic, message);
+//        List<Long> list = appUserRepository.getUsersId();
+//        Iterator<Long> iterator = list.iterator();
+//
+//        while (iterator.hasNext()) {
+//            Long temp = iterator.next();
+//            if(temp.equals(userID)) {
+                Message msg = new Message(userID.longValue(), topic, message);
                 em.persist(msg);
-            }
-        }
+//            }
+//        }
     }
 
     public List<Message> receiveMessages(Integer userID) {
